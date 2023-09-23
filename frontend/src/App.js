@@ -1,11 +1,13 @@
-
+import Body from "./Components/Layouts/Body";
+import Header from "./Components/Layouts/Header";
+import Footer from "./Components/Layouts/Footer";
 
 function App() {
   return (
-    <div>
-        <p>
-          BackBook
-        </p>
+    <div >
+        <Header />
+        <Body />
+        <Footer />
     </div>
   );
 }
