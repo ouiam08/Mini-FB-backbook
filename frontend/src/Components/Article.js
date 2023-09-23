@@ -1,11 +1,17 @@
 import {  faComment, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
+import React, {useState} from 'react'
 import Button from './Common/Button';
 import Mark from './../Assets/images/mark.jpg';
 
 function Article(params) {
     const postTime = "Il y a 1 heure";
+
+    const [comment, setComment] = useState('');
+    const handleChange = (e) => {
+        setComment(e.target.value); 
+      };
+
   return (
     <>
         <div className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-20 shadow-md'>
@@ -32,7 +38,15 @@ function Article(params) {
             </div>
             <div className='inline-flex w-full m-2'>
                 <img src={Mark} alt='user' className='rounded-full w-10 h-10 mr-4 cursor-pointer'/>
-                <div className='bg-gray-200 text-gray-600 rounded-full p-2 w-screen mr-4 cursor-pointer'>Write a comment...</div>
+                <div className='bg-gray-200 text-gray-600 rounded-full p-2 w-screen mr-4 cursor-pointer'>
+                <textarea
+                   className="w-full h-2 p-2 bg-transparent outline-none border-none overflow-hidden resize-none"
+                   placeholder="Write a comment?"
+                   value={comment}
+                   onChange={handleChange}
+                >
+                </textarea>
+                </div>
                 <Button text="Comment" icon={false} className=''/>
             </div>
         </div>

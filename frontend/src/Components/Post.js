@@ -21,7 +21,7 @@ function Post() {
                 <img src={Mark} alt='mark' className='w-16 h-16 rounded-full p-2 cursor-pointer'/>
                 <div className='bg-gray-200 rounded-lg m-4 w-full p-4'>
                     <textarea
-                        className="w-full h-20 p-2 bg-transparent outline-none border-none"
+                        className="w-full h-20 p-2 bg-transparent outline-none border-none overflow-hidden resize-none"
                         placeholder="What's on your mind?"
                         value={text}
                         onChange={handleChange}
