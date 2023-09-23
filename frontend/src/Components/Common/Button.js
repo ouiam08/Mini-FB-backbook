@@ -6,8 +6,8 @@ function Button(props) {
     
   return (
     <>
-        <div className='inline-block bg-green-custom rounded-lg p-1 cursor-pointer '>
-            {props.icon && <FontAwesomeIcon icon={faShare}/>}
+        <div className='inline-block bg-green-custom rounded-lg p-2 cursor-pointer text-white'>
+            {props.icon && <FontAwesomeIcon icon={faShare} className='mr-2 '/>}
             {props.text}
         </div>
     </>

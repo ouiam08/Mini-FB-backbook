@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import Mark from './../Assets/images/mark.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
@@ -8,14 +9,24 @@ import Button from './Common/Button';
 
 
 function Post() {
+    const [text, setText] = useState('');
+
+  const handleChange = (e) => {
+    setText(e.target.value); 
+  };
   return (
     <>
         <div className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-20 shadow-md'>
             <div className='inline-flex w-full'>
                 <img src={Mark} alt='mark' className='w-16 h-16 rounded-full p-2 cursor-pointer'/>
-                <div className='bg-gray-200 rounded-lg m-4 w-full h-20 p-4'>
-                    What's on your mind?
-                </div>    
+                <div className='bg-gray-200 rounded-lg m-4 w-full p-4'>
+                    <textarea
+                        className="w-full h-20 p-2 bg-transparent outline-none border-none"
+                        placeholder="What's on your mind?"
+                        value={text}
+                        onChange={handleChange}
+                    ></textarea>      
+                </div>  
             </div>
             <div className='flex items-center justify-between px-9 w-full'>
                 <div className='flex items-center'>
