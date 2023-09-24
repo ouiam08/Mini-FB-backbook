@@ -3,22 +3,20 @@ import { useQuery } from "react-query";
 import { ENDPOINTS } from "../../endpoints";
 import { instance } from "../axios/useAxios";
 
-
 const fetchPostsQueryFn = async () => {
   try {
-    const response = await instance.get(`${ENDPOINTS.POSTS}`) ;
-    console.log(response.data)
+    const response = await instance.get(`${ENDPOINTS.POSTS}`);
     return response.data;
   } catch (error) {
-    throw error; 
+    throw error;
   }
 };
 
-export const useGetAllPosts = () => {
+export const useGetPosts = () => {
   const { status, data, error, refetch } = useQuery({
     queryKey: ["fetchAllPosts"],
     queryFn: () => fetchPostsQueryFn(),
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
 
   useEffect(() => {
@@ -32,4 +30,4 @@ export const useGetAllPosts = () => {
   };
 };
 
-export default useGetAllPosts;
+export default useGetPosts;
