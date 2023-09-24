@@ -1,31 +1,30 @@
-import React, {useState} from 'react';
-import Mark from './../Assets/images/mark.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faComment, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, {useState} from 'react'
 import Button from '../../../front/src/components/Common/Button';
+import Mark from './../Assets/images/mark.jpg';
 
+function Article(params) {
+    const postTime = "Il y a 1 heure";
 
-function PostList({
-  postList,
-}) {
-  const [comment, setComment] = useState('');
+    const [comment, setComment] = useState('');
     const handleChange = (e) => {
         setComment(e.target.value); 
       };
+
   return (
-    <div>
-     {postList.map((post) => (
-      <div key={post.id} className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-20 shadow-md'>
+    <>
+        <div className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-20 shadow-md'>
             <div className='inline-flex ml-6'>
-                <img src={Mark} alt='postownerimage' className='w-16 h-16 rounded-full p-2 cursor-pointer m-2'/>
+                <img src={params.postOwnerImage} alt='postownerimage' className='w-16 h-16 rounded-full p-2 cursor-pointer m-2'/>
                 <div className='mt-4'>
-                    <div className='text-green-800 font-beezee font-semibold'>postOwnerName</div>
-                    <div className='text-gray-400 font-beezee'>Il y a 1 heure</div>
+                    <div className='text-green-800 font-beezee font-semibold'>{params.postOwnerName}</div>
+                    <div className='text-gray-400 font-beezee'>{postTime}</div>
                 </div>
             </div>
-            <div className='ml-2 mr-2'>{post.body}</div>
+            <div className='ml-2 mr-2'>{params.postBody}</div>
             <div className='ml-4 mt-2 cursor-pointer'>
-                <span>33</span>
+                <span>{params.reactionNombre}</span>
                 <FontAwesomeIcon icon={faThumbsUp} className='text-green-800 ml-2'/>
             </div>
             <div className='mt-2'>
@@ -51,9 +50,8 @@ function PostList({
                 <Button text="Comment" icon={false} className=''/>
             </div>
         </div>
-        ))}
-    </div>
-  );
+    </>
+  )
 }
 
-export default PostList;
+export default Article
