@@ -5,7 +5,6 @@ import CommentList from '../components/CommentList';
 function CommentListContainer(props) {
   const { commentList } = useGetPostComments(props.postId);
 
-console.log(props.postId)
   return (
     <div>
       <CommentList
