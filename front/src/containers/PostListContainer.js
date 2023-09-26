@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import useGetPosts from '../hooks/posts/useGetPosts';
-import { useDeletePost } from '../hooks/posts/useDeletePost';
-import { useInsertPost } from '../hooks/posts/useInsertPost';
-import { useUpdatePost } from '../hooks/posts/useUpdatePost'; 
+import useDeletePost from '../hooks/posts/useDeletePost';
+import useUpdatePost from '../hooks/posts/useUpdatePost';
 import PostList from '../components/PostList';
 import Cookies from "js-cookie";
 import useGetUserByID from "../hooks/users/useGetUserByID";
@@ -10,12 +9,12 @@ import useGetUserByID from "../hooks/users/useGetUserByID";
 function PostListContainer() {
   const { postList } = useGetPosts();
   const { deletePostMutation } = useDeletePost();
-  const { insertPostMutation } = useInsertPost();
   const { updatePostMutation } = useUpdatePost(); 
   const [deleteCalled, setDeleteCalled] = useState(false);
-  const [newPostData, setNewPostData] = useState({ photo: [], body: '' });
-  const [editPost, setEditPost] = useState(null); 
+
+  const [editPost, setEditPost] = useState(null);
   const [updatedPostData, setUpdatedPostData] = useState({ photo: [], body: '' });
+  const [selectedPostId, setSelectedPostId] = useState(null);
   const userId = Cookies.get('userID');
   const user = useGetUserByID(userId).data;
 
@@ -30,21 +29,9 @@ function PostListContainer() {
     }
   };
 
-  const handleAddPost = async () => {
-    try {
-      const defaultPost = {
-        photo: [],
-        body: newPostData.body,
-        user: user,
-      };
 
-      await insertPostMutation.mutateAsync(defaultPost);
 
-      setNewPostData({ photo: null, body: '' });
-    } catch (error) {
-      console.error('Error inserting post:', error);
-    }
-  };
+
 
   const handleEditClick = (post) => {
     setEditPost(post);
@@ -71,32 +58,45 @@ function PostListContainer() {
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewPostData({ ...newPostData, [name]: value });
-  };
+
+
+
+
+  const handleDeleteClick = (postId) => {
+    handleDeletePost(postId);
+    console.log("post deleted successfully", postId);
+  }
+
+  const handleEditPostClick = (postId) => {
+    setSelectedPostId(postId);
+  }
+  const handleClosePostEdit = () =>{
+    setSelectedPostId(null);
+  }
 
   const handleDeconnexion = ()=>{
     Cookies.set('userID',0)
     window.location.href = '/signin'
   }
 
+
   return (
     <div>
       <PostList
         postList={postList}
         handleDeletePost={handleDeletePost}
-        handleAddPost={handleAddPost}
-        newPostData={newPostData}
-        handleInputChange={handleInputChange}
         handleEditClick={handleEditClick}
         handleUpdatePost={handleUpdatePost}
         editPost={editPost}
         updatedPostData={updatedPostData}
         setUpdatedPostData={setUpdatedPostData}
         handleDeconnexion={handleDeconnexion}
+        handleClosePostEdit={handleClosePostEdit}
+        handleEditPostClick={handleEditPostClick}
+        handleDeleteClick={handleDeleteClick}
+        selectedPostId={selectedPostId}
       />
-    </div>
+          </div>
   );
 }
 
