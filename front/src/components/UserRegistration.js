@@ -4,7 +4,7 @@ function UserRegistration({
                               handleInputChange,
                               handleRegister,
                               userData,
-                                response
+                              response
                           }) {
     return (
         <div>

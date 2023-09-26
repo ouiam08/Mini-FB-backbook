@@ -1,6 +1,6 @@
-import { useQuery } from "react-query";
-import { ENDPOINTS } from "../../endpoints";
-import { instance } from "../axios/useAxios";
+import {useQuery} from "react-query";
+import {ENDPOINTS} from "../../endpoints";
+import {instance} from "../axios/useAxios";
 
 const getUserQueryFn = async (id) => {
     try {
@@ -12,7 +12,7 @@ const getUserQueryFn = async (id) => {
 };
 
 export const useGetUserByID = (id) => {
-    const { status, data, error, refetch } = useQuery(
+    const {status, data, error, refetch} = useQuery(
         ["user", id], // Unique query key to identify this query
         () => getUserQueryFn(id)
     );

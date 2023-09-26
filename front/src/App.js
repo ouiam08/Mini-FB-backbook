@@ -1,5 +1,5 @@
 import Home from "./pages/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Register from "./pages/Register";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
@@ -16,4 +16,5 @@ function App() {
         </BrowserRouter>
     )
 }
+
 export default App;
