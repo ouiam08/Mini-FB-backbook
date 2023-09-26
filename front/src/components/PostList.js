@@ -10,10 +10,11 @@ function PostList({
   handleUpdatePost,
   editPost,
   updatedPostData,
-  setUpdatedPostData,
+  setUpdatedPostData, handleDeconnexion
 }) {
   return (
     <div>
+        <button onClick={handleDeconnexion}>Deconnexion</button>
       <h1>Posts list</h1>
       <ul>
         {postList.map((post) => (

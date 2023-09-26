@@ -4,6 +4,8 @@ import { useDeletePost } from '../hooks/posts/useDeletePost';
 import { useInsertPost } from '../hooks/posts/useInsertPost';
 import { useUpdatePost } from '../hooks/posts/useUpdatePost'; 
 import PostList from '../components/PostList';
+import Cookies from "js-cookie";
+import useGetUserByID from "../hooks/users/useGetUserByID";
 
 function PostListContainer() {
   const { postList } = useGetPosts();
@@ -11,9 +13,11 @@ function PostListContainer() {
   const { insertPostMutation } = useInsertPost();
   const { updatePostMutation } = useUpdatePost(); 
   const [deleteCalled, setDeleteCalled] = useState(false);
-  const [newPostData, setNewPostData] = useState({ photo: null, body: '' });
+  const [newPostData, setNewPostData] = useState({ photo: [], body: '' });
   const [editPost, setEditPost] = useState(null); 
-  const [updatedPostData, setUpdatedPostData] = useState({ photo: null, body: '' });
+  const [updatedPostData, setUpdatedPostData] = useState({ photo: [], body: '' });
+  const userId = Cookies.get('userID');
+  const user = useGetUserByID(userId).data;
 
   const handleDeletePost = async (postId) => {
     if (!deleteCalled) {
@@ -29,13 +33,9 @@ function PostListContainer() {
   const handleAddPost = async () => {
     try {
       const defaultPost = {
-        photo: null,
+        photo: [],
         body: newPostData.body,
-        user: {
-          id: 2,
-          name: 'haitam',
-          password: '123',
-        },
+        user: user,
       };
 
       await insertPostMutation.mutateAsync(defaultPost);
@@ -76,6 +76,11 @@ function PostListContainer() {
     setNewPostData({ ...newPostData, [name]: value });
   };
 
+  const handleDeconnexion = ()=>{
+    Cookies.set('userID',0)
+    window.location.href = '/signin'
+  }
+
   return (
     <div>
       <PostList
@@ -89,6 +94,7 @@ function PostListContainer() {
         editPost={editPost}
         updatedPostData={updatedPostData}
         setUpdatedPostData={setUpdatedPostData}
+        handleDeconnexion={handleDeconnexion}
       />
     </div>
   );

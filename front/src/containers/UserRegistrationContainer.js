@@ -1,43 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { useRegisterUser } from '../hooks/Auth/useRegisterUser';
 import UserRegistration from '../components/UserRegistration';
-import useRegisterUser from '../hooks/Auth/useRegisterUser';
+import Cookies from "js-cookie";
+
 
 function UserRegistrationContainer() {
-  const { registerUserMutation } = useRegisterUser();
-  
-const [name,setName] = useState("");
-const [password,setPassword] =  useState("")
+    const [userData, setUserData] = useState({name: "", password: ""});
+    const {registerUserMutation} = useRegisterUser();
+    const [response, setResponse] = useState('')
 
-  const handleRegisterUser = async () => {
-    try {
-      const registrationData = {
-        name: name,
-        password: password,
-      };
+    const handleRegister = async () => {
+        if(userData.name !== '' && userData.password !== '') {
+        try {
+            const user = {
+                name: userData.name,
+                password: userData.password
+            };
 
-      await registerUserMutation.mutateAsync(registrationData);
-      setName("")
-      setPassword("")
-      
-    } catch (error) {
-      console.error('Error registering user:', error);
+             await registerUserMutation.mutateAsync(user);
+            setUserData({name: '', password: ''});
+
+
+        } catch (error) {
+            setResponse(error.response.data)
+        }}
+        else {
+            setResponse('Name and password should not be empty!')
+        }
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setUserData({ ...userData, [name]: value });
+    };
+
+    if(registerUserMutation.status === "success"){
+        window.location.href = "/signin"
     }
-  };
-
- 
 
   return (
-    <div>
-      <UserRegistration
-        handleRegisterUser={handleRegisterUser}
-        name={name}
-        password={password} 
-        setPassword = {setPassword}
-        setName = {setName}
 
-      />
-    </div>
-  );
+        <UserRegistration
+        handleInputChange={handleInputChange}
+        handleRegister={handleRegister}
+        userData={userData}
+        response={response}
+        />
+
+  )
 }
-
 export default UserRegistrationContainer;

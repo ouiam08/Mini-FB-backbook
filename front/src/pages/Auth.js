@@ -1,8 +1,9 @@
 import React from 'react'
+import AuthContainer from "../containers/AuthContainer";
 
 function Auth() {
   return (
-    <div>Auth</div>
+    <div><AuthContainer /></div>
   )
 }
 
