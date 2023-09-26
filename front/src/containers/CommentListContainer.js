@@ -2,9 +2,8 @@ import React from 'react';
 import useGetPostComments from '../hooks/comments/useGetPostComments';
 import CommentList from '../components/CommentList';
 
-function CommentListContainer() {
-    const {commentList} = useGetPostComments(49);
-    console.log(commentList)
+function CommentListContainer(props) {
+    const {commentList} = useGetPostComments(props.postId);
     return (
         <div>
             <CommentList

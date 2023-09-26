@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {useInsertComment} from '../hooks/comments/useInsertComment';
 import NewComment from '../components/NewComment';
+import Cookies from "js-cookie";
 
-function NewCommentContainer() {
-
+function NewCommentContainer(params) {
+    const userId = Cookies.get('userID');
     const {insertCommentMutation} = useInsertComment();
-    const [newCommentData, setNewCommentData] = useState({text: '', postId: '', userId: ''});
+    const [newCommentData, setNewCommentData] = useState({text: '', postId: '', userId: 0});
 
 
     const handleAddComment = async (comment) => {
@@ -15,10 +16,9 @@ function NewCommentContainer() {
                 post_id: comment.postId,
                 user_id: comment.userId
             };
-            console.log("default: ", defaultComment);
             await insertCommentMutation.mutateAsync(defaultComment);
 
-            setNewCommentData({text: '', postId: '', userId: ''});
+            setNewCommentData({text: '', postId: '', userId: 0});
         } catch (error) {
             console.error('Error inserting comment:', error);
         }
@@ -38,13 +38,11 @@ function NewCommentContainer() {
         if (comment.trim() === '') {
             return;
         }
-        console.log(postId);
         const newComment = {
             postId: postId,
-            userId: 1,
+            userId: userId,
             text: comment
         };
-        console.log("comment", newComment);
         handleAddComment(newComment);
         setComment('');
     };
@@ -58,6 +56,7 @@ function NewCommentContainer() {
                 handleChange={handleChange}
                 handleCommentSubmit={handleCommentSubmit}
                 comment={comment}
+                postId = {params.postId}
             />
         </div>
     );

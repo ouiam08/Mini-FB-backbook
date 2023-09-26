@@ -61,9 +61,9 @@ function PostList({
                                 </div>
                             </div>
                             <hr/>
-                            <CommentListContainer/>
+                            <CommentListContainer postId={post.id} />
                         </div>
-                        <NewCommentContainer/>
+                        <NewCommentContainer postId={post.id} />
                         {selectedPostId === post.id && <PostEdit
                             postId={post.id}
                             postBody={post.body}

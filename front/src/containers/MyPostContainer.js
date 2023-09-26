@@ -3,6 +3,8 @@ import {useDeletePost} from '../hooks/posts/useDeletePost';
 import {useInsertPost} from '../hooks/posts/useInsertPost';
 import {useUpdatePost} from '../hooks/posts/useUpdatePost';
 import NewPost from '../components/NewPost';
+import Cookies from "js-cookie";
+import useGetUserByID from "../hooks/users/useGetUserByID";
 
 function NewPostContainer() {
     const {deletePostMutation} = useDeletePost();
@@ -12,7 +14,8 @@ function NewPostContainer() {
     const [newPostData, setNewPostData] = useState({photo: null, body: ''});
     const [editPost, setEditPost] = useState(null);
     const [updatedPostData, setUpdatedPostData] = useState({photo: null, body: ''});
-
+    const userId = Cookies.get('userID');
+    const user = useGetUserByID(userId).data;
     const handleDeletePost = async (postId) => {
         if (!deleteCalled) {
             try {
@@ -29,11 +32,7 @@ function NewPostContainer() {
             const defaultPost = {
                 photo: null,
                 body: newPostData.body,
-                user: {
-                    id: 2,
-                    name: 'haitam',
-                    password: '123',
-                },
+                user: user,
             };
 
             await insertPostMutation.mutateAsync(defaultPost);
@@ -55,11 +54,7 @@ function NewPostContainer() {
                 id: editPost.id,
                 photo: updatedPostData.photo,
                 body: updatedPostData.body,
-                user: {
-                    id: 2,
-                    name: 'haitam',
-                    password: '123',
-                }
+                user: user
             };
 
             await updatePostMutation.mutateAsync(updatedPost);

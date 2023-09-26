@@ -18,7 +18,6 @@ function NewPostContainer() {
                 body: post.postBody,
                 user: user
             };
-            console.log("default: ", defaultPost);
             await insertPostMutation.mutateAsync(defaultPost);
 
             setNewPostData({photo: null, body: '', userId: ''});
