@@ -1,10 +1,11 @@
 import React from 'react'
-import UserRegistration from '../components/UserRegistration'
+import UserRegistrationContainer from '../containers/UserRegistrationContainer'
 
 function Register() {
-  return (
-    <div><UserRegistration /></div>
-  )
+    return (
+
+        <div><UserRegistrationContainer/></div>
+    )
 }
 
 export default Register

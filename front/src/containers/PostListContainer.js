@@ -1,97 +1,93 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import useGetPosts from '../hooks/posts/useGetPosts';
-import { useDeletePost } from '../hooks/posts/useDeletePost';
-import { useInsertPost } from '../hooks/posts/useInsertPost';
-import { useUpdatePost } from '../hooks/posts/useUpdatePost'; 
+import useDeletePost from '../hooks/posts/useDeletePost';
+import useUpdatePost from '../hooks/posts/useUpdatePost';
 import PostList from '../components/PostList';
+import Cookies from "js-cookie";
+import useGetUserByID from "../hooks/users/useGetUserByID";
 
 function PostListContainer() {
-  const { postList } = useGetPosts();
-  const { deletePostMutation } = useDeletePost();
-  const { insertPostMutation } = useInsertPost();
-  const { updatePostMutation } = useUpdatePost(); 
-  const [deleteCalled, setDeleteCalled] = useState(false);
-  const [newPostData, setNewPostData] = useState({ photo: null, body: '' });
-  const [editPost, setEditPost] = useState(null); 
-  const [updatedPostData, setUpdatedPostData] = useState({ photo: null, body: '' });
+    const {postList} = useGetPosts();
+    const {deletePostMutation} = useDeletePost();
+    const {updatePostMutation} = useUpdatePost();
+    const [deleteCalled, setDeleteCalled] = useState(false);
 
-  const handleDeletePost = async (postId) => {
-    if (!deleteCalled) {
-      try {
-        await deletePostMutation.mutateAsync(postId);
-        setDeleteCalled(true);
-      } catch (error) {
-        console.error('Error deleting post:', error);
-      }
-    }
-  };
+    const [editPost, setEditPost] = useState(null);
+    const [updatedPostData, setUpdatedPostData] = useState({photo: [], body: ''});
+    const [selectedPostId, setSelectedPostId] = useState(null);
+    const userId = Cookies.get('userID');
+    const user = useGetUserByID(userId).data;
 
-  const handleAddPost = async () => {
-    try {
-      const defaultPost = {
-        photo: null,
-        body: newPostData.body,
-        user: {
-          id: 2,
-          name: 'haitam',
-          password: '123',
-        },
-      };
-
-      await insertPostMutation.mutateAsync(defaultPost);
-
-      setNewPostData({ photo: null, body: '' });
-    } catch (error) {
-      console.error('Error inserting post:', error);
-    }
-  };
-
-  const handleEditClick = (post) => {
-    setEditPost(post);
-    setUpdatedPostData({ photo: post.photo, body: post.body });
-  };
-
-  const handleUpdatePost = async () => {
-    try {
-      const updatedPost = {
-        id: editPost.id,
-        photo: updatedPostData.photo,
-        body: updatedPostData.body,
-        user: {
-          id: 2,
-          name: 'haitam',
-          password: '123',
+    const handleDeletePost = async (postId) => {
+        if (!deleteCalled) {
+            try {
+                await deletePostMutation.mutateAsync(postId);
+                setDeleteCalled(true);
+            } catch (error) {
+                console.error('Error deleting post:', error);
+            }
         }
-      };
+    };
 
-      await updatePostMutation.mutateAsync(updatedPost);
-      setEditPost(null);
-    } catch (error) {
-      console.error('Error updating post:', error);
+
+    const handleEditClick = (post) => {
+        setEditPost(post);
+        setUpdatedPostData({photo: post.photo, body: post.body});
+    };
+
+    const handleUpdatePost = async () => {
+        try {
+            const updatedPost = {
+                id: editPost.id,
+                photo: updatedPostData.photo,
+                body: updatedPostData.body,
+                user: user
+            };
+
+            await updatePostMutation.mutateAsync(updatedPost);
+            setEditPost(null);
+        } catch (error) {
+            console.error('Error updating post:', error);
+        }
+    };
+
+
+    const handleDeleteClick = (postId) => {
+        handleDeletePost(postId);
+        console.log("post deleted successfully", postId);
     }
-  };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewPostData({ ...newPostData, [name]: value });
-  };
+    const handleEditPostClick = (postId) => {
+        setSelectedPostId(postId);
+    }
+    const handleClosePostEdit = () => {
+        setSelectedPostId(null);
+    }
 
-  return (
-    <div>
-      <PostList
-        postList={postList}
-        handleDeletePost={handleDeletePost}
-        handleAddPost={handleAddPost}
-        newPostData={newPostData}
-        handleInputChange={handleInputChange}
-        handleEditClick={handleEditClick}
-        handleUpdatePost={handleUpdatePost}
-        editPost={editPost}
-        updatedPostData={updatedPostData}
-        setUpdatedPostData={setUpdatedPostData}
-      />
-    </div>
-  );
+    const handleDeconnexion = () => {
+        Cookies.set('userID', 0)
+        window.location.href = '/signin'
+    }
+
+
+    return (
+        <div>
+            <PostList
+                postList={postList}
+                handleDeletePost={handleDeletePost}
+                handleEditClick={handleEditClick}
+                handleUpdatePost={handleUpdatePost}
+                editPost={editPost}
+                updatedPostData={updatedPostData}
+                setUpdatedPostData={setUpdatedPostData}
+                handleDeconnexion={handleDeconnexion}
+                handleClosePostEdit={handleClosePostEdit}
+                handleEditPostClick={handleEditPostClick}
+                handleDeleteClick={handleDeleteClick}
+                selectedPostId={selectedPostId}
+            />
+        </div>
+    );
 }
 
 export default PostListContainer;
