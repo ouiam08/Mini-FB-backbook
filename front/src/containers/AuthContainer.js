@@ -30,9 +30,8 @@ const AuthUserContainer = () => {
         } else {
             setResponse('Name and password should not be empty!')
         }
-
-
     };
+    
     if (authUserMutation.status === 'success') {
         window.location.href = '/'
         Cookies.set('userID', authUserMutation.data);

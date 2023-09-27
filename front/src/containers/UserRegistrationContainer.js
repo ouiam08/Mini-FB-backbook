@@ -4,12 +4,13 @@ import UserRegistration from '../components/UserRegistration';
 
 
 function UserRegistrationContainer() {
-    const [userData, setUserData] = useState({name: "", password: ""});
+    const [userData, setUserData] = useState({name: "", password: "", confirmPassword: ""});
     const {registerUserMutation} = useRegisterUser();
     const [response, setResponse] = useState('')
 
     const handleRegister = async () => {
         if (userData.name !== '' && userData.password !== '') {
+            if(userData.password === userData.confirmPassword){
             try {
                 const user = {
                     name: userData.name,
@@ -23,6 +24,9 @@ function UserRegistrationContainer() {
             } catch (error) {
                 setResponse(error.response.data)
             }
+        }else{
+            setResponse('passwords do not match')
+        }
         } else {
             setResponse('Name and password should not be empty!')
         }
@@ -31,6 +35,9 @@ function UserRegistrationContainer() {
     const handleInputChange = (e) => {
         const {name, value} = e.target;
         setUserData({...userData, [name]: value});
+    };
+    const handleConfirmChange = () => {
+
     };
 
     if (registerUserMutation.status === "success") {
@@ -41,6 +48,7 @@ function UserRegistrationContainer() {
 
         <UserRegistration
             handleInputChange={handleInputChange}
+            handleConfirmChange={handleConfirmChange}
             handleRegister={handleRegister}
             userData={userData}
             response={response}

@@ -64,10 +64,6 @@ function PostListContainer() {
         setSelectedPostId(null);
     }
 
-    const handleDeconnexion = () => {
-        Cookies.set('userID', 0)
-        window.location.href = '/signin'
-    }
 
 
     return (
@@ -80,7 +76,6 @@ function PostListContainer() {
                 editPost={editPost}
                 updatedPostData={updatedPostData}
                 setUpdatedPostData={setUpdatedPostData}
-                handleDeconnexion={handleDeconnexion}
                 handleClosePostEdit={handleClosePostEdit}
                 handleEditPostClick={handleEditPostClick}
                 handleDeleteClick={handleDeleteClick}

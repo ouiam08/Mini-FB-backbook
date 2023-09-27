@@ -11,7 +11,7 @@ function PostList({
                       handleEditClick,
                       handleUpdatePost,
                       editPost,
-                      handleDeconnexion,
+                    //   handleDeconnexion,
                       handleClosePostEdit,
                       handleEditPostClick,
                       handleDeleteClick,
@@ -21,9 +21,7 @@ function PostList({
 
     return (
         <>
-            <div>
-                <button onClick={handleDeconnexion}>Deconnexion</button>
-            </div>
+            
 
             <div>
                 {postList.map((post) => (

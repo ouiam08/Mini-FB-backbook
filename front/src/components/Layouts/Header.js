@@ -1,8 +1,11 @@
 import React from 'react';
 import BICON from './../../Assets/images/BIcon.jpg';
 import Mark from './../../Assets/images/mark.jpg';
+import Cookies from "js-cookie";
 
-function Header() {
+function Header(
+    props
+) {
     const userName = "BBUserName";
     const userImage = Mark;
     return (
@@ -13,9 +16,11 @@ function Header() {
                     <div className="inline-flex items-center cursor-pointer">
                         <img src={userImage} alt='user' className='w-10 h-10 rounded-full p-2'/>
                         <span>{userName}</span>
-                    </div>
+                    </div> 
                 </a>
-
+                {Cookies.get('userID') !== '0' && <div>
+                    <button className='bg-green-600 text-white p-2 rounded-lg' onClick={props.handleDeconnexion}>Deconnexion</button>
+                </div>}
             </header>
 
         </>
