@@ -31,10 +31,12 @@ const AuthUserContainer = () => {
             setResponse('Name and password should not be empty!')
         }
     };
+
     
     if (authUserMutation.status === 'success') {
-        window.location.href = '/'
+        const authenticatedUserName = formData.name;
         Cookies.set('userID', authUserMutation.data);
+        window.location.href = `/?username=${authenticatedUserName}`;
     }
 
     return (

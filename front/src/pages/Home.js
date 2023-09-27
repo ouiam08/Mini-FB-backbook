@@ -12,9 +12,13 @@ function Home() {
         Cookies.set('userID', 0)
         window.location.href = '/signin'
     }
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const username = urlParams.get('username');
+
     return (
         <div className='bg-gray-200'>
-            <Header handleDeconnexion={handleDeconnexion}/>
+            <Header handleDeconnexion={handleDeconnexion} username={username}/>
             <NewPostContainer/>
             <PostListContainer/>
             <Footer/>

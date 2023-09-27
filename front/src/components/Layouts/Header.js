@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 function Header(
     props
 ) {
-    const userName = "BBUserName";
+    
     const userImage = Mark;
     return (
         <>
@@ -16,7 +16,7 @@ function Header(
                     <a href='/profile'>
                     <div className="inline-flex items-center cursor-pointer">
                         <img src={userImage} alt='user' className='w-10 h-10 rounded-full p-2'/>
-                        <span>{userName}</span>
+                        <span>{props.username}</span>
                     </div> 
                 </a>
                 {Cookies.get('userID') !== '0' && <div className='ml-6'>
