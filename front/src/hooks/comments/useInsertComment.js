@@ -6,6 +6,7 @@ import {instance} from "../axios/useAxios";
 const insertCommentFn = async (comment) => {
     try {
         const response = await instance.post(ENDPOINTS.COMMENTS, comment);
+        console.log("whnaaaa: ", response)
         return response.data;
     } catch (error) {
         throw error;
@@ -20,7 +21,7 @@ export const useInsertComment = () => {
         ["InsertComment"],
         (comment) => {
             const insertComment = insertCommentFn(comment);
-            queryClient.invalidateQueries(["fetchAllComments"]);
+            queryClient.invalidateQueries(["insertComments"]);
             return insertComment;
         }
     );

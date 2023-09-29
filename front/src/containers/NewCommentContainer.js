@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useInsertComment} from '../hooks/comments/useInsertComment';
+import {useGetUserByID} from '../hooks/users/useGetUserByID';
 import NewComment from '../components/NewComment';
 import Cookies from "js-cookie";
 
@@ -7,15 +8,20 @@ function NewCommentContainer(params) {
     const userId = Cookies.get('userID');
     const {insertCommentMutation} = useInsertComment();
     const [newCommentData, setNewCommentData] = useState({text: '', postId: '', userId: 0});
+    const user = useGetUserByID(Cookies.get('userID')).data;
 
 
     const handleAddComment = async (comment) => {
         try {
             const defaultComment = {
-                comment_body: comment.text,
-                post_id: comment.postId,
-                user_id: comment.userId
+                body: comment.text,
+                post: {
+                    post_id: comment.postId,
+                    post_body: "hi",
+                },
+                user: user
             };
+            console.log("Nchof hna: ", comment.text, comment.postId, comment.userId);
             await insertCommentMutation.mutateAsync(defaultComment);
 
             setNewCommentData({text: '', postId: '', userId: 0});
@@ -38,9 +44,10 @@ function NewCommentContainer(params) {
         if (comment.trim() === '') {
             return;
         }
+        console.log("Db comment : ", postId, userId, comment);
         const newComment = {
             postId: postId,
-            userId: userId,
+            userId: 4,
             text: comment
         };
         handleAddComment(newComment);
