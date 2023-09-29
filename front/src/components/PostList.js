@@ -1,5 +1,5 @@
 import React from 'react';
-import Mark from './../Assets/images/mark.jpg';
+import Person from './../Assets/images/person.jpg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBook, faClose, faComment, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import NewCommentContainer from '../containers/NewCommentContainer';
@@ -27,10 +27,10 @@ function PostList({
                 {postList.map((post) => (
                     <div key={post.id} className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-20 shadow-md'>
                         <div className='inline-flex ml-6 w-full'>
-                            <img src={Mark} alt='postownerimage'
+                            <img src={Person} alt='postownerimage'
                                  className='w-16 h-16 rounded-full p-2 cursor-pointer m-2'/>
                             <div className='mt-4'>
-                                <div className='text-green-800 font-beezee font-semibold'>postOwnerName</div>
+                                <div className='text-green-800 font-beezee font-semibold'>{post.user.name}</div>
                                 <div className='text-gray-400 font-beezee'>Il y a 1 heure</div>
                             </div>
                             <div className='ml-auto'>
