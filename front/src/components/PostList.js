@@ -59,6 +59,7 @@ function PostList({
                                 </div>
                             </div>
                             <hr/>
+                            {console.log("hna nchofo l post id li taydoz: ", post.id)}
                             <CommentListContainer postId={post.id} />
                         </div>
                         <NewCommentContainer postId={post.id} />

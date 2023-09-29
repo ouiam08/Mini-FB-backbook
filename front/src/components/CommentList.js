@@ -10,6 +10,8 @@ function CommentList(
                     <div key={comment.id}>
                         <h3>{comment.user.name}</h3>
                         <p>{comment.body}</p>
+                        <p>{comment.post.id}</p>
+                        {/* {console.log(comment)} */}
                     </div>
                 ))}
             </div>
