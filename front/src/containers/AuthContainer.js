@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import {useAuthUser} from "../hooks/Auth/useAuthentificateUser"
 import AuthUser from "../components/AuthUser";
 import Cookies from 'js-cookie';
+import {useNavigate} from "react-router-dom";
 
 
 const AuthUserContainer = () => {
     const {authUserMutation} = useAuthUser();
     const [response, setResponse] = useState('')
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         password: "",
@@ -16,8 +18,6 @@ const AuthUserContainer = () => {
         const {name, value} = e.target;
         setFormData({...formData, [name]: value});
     };
-
-
 
 
     const handleSubmit = async (e) => {
@@ -32,12 +32,12 @@ const AuthUserContainer = () => {
         } else {
             setResponse('Name and password should not be empty!')
         }
-
-
     };
+
+
     if (authUserMutation.status === 'success') {
-        window.location.href = '/'
         Cookies.set('userID', authUserMutation.data);
+        window.location.href = "/";
     }
 
     return (
@@ -46,6 +46,7 @@ const AuthUserContainer = () => {
             handleInputChange={handleInputChange}
             handleSubmit={handleSubmit}
             response={response}
+            navigate={navigate}
         />
     );
 };

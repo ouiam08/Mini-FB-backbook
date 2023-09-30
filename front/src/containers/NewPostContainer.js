@@ -7,9 +7,12 @@ import Mark from "../Assets/images/mark.jpg";
 
 function NewPostContainer() {
     const {insertPostMutation} = useInsertPost();
-    const [newPostData, setNewPostData] = useState({photo: null, body: '', userId: ''});
+    const [newPostData, setNewPostData] = useState({photo: null, body: '', user: ''});
     const user = useGetUserByID(Cookies.get('userID')).data;
-
+    const [text, setText] = useState('');
+    const [bgColor, setBgColor] = useState('bg-gray-200');
+    const [bgColorIndex, setBgColorIndex] = useState(0);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const handleAddPost = async (post) => {
         try {
@@ -20,7 +23,7 @@ function NewPostContainer() {
             };
             await insertPostMutation.mutateAsync(defaultPost);
 
-            setNewPostData({photo: null, body: '', userId: ''});
+            setNewPostData({photo: null, body: '', user: ''});
         } catch (error) {
             console.error('Error inserting post:', error);
         }
@@ -32,25 +35,21 @@ function NewPostContainer() {
         setNewPostData({...newPostData, [name]: value});
     };
 
-    const [text, setText] = useState('');
-    const userId = Cookies.get('userID');
-    const [bgColor, setBgColor] = useState('bg-gray-200');
-    const [bgColorIndex, setBgColorIndex] = useState(0);
-    const [selectedImage, setSelectedImage] = useState(null);
 
     const handleChange = (e) => {
         setText(e.target.value);
     };
 
     const handleShareClick = () => {
-        const post = {
-            photo: Mark,
-            postBody: text,
-            userId: userId,
-            postColor: bgColor
-        };
-        handleAddPost(post);
-        setText('');
+        if (text !== '') {
+            const post = {
+                photo: Mark,
+                postBody: text,
+                user: user,
+            };
+            handleAddPost(post);
+            setText('');
+        }
     };
 
     const handleBgColorChange = () => {
