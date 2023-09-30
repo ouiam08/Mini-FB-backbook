@@ -1,27 +1,44 @@
 import React, {useState} from 'react';
 import PostEdit from "../components/PostEdit";
+import useGetUserByID from "../hooks/users/useGetUserByID";
+import Cookies from "js-cookie";
+import useUpdatePost from "../hooks/posts/useUpdatePost";
 
-const PostEditContainer = (params) => {
-    const [updatedText, setUpdatedText] = useState(params.postBody);
-    const [i, setI] = useState("hhhhhhhhh");
-    const handleUpdateClick = () => {
-        const post = {
-            id: params.postId,
-            photo: null,
-            body: updatedText,
+const PostEditContainer = (props) => {
+    console.log(props.post)
+    const [updatedText, setUpdatedText] = useState(props.postSelected.body);
+    const user = useGetUserByID(Cookies.get('userID')).data;
+    const {updatePostMutation} = useUpdatePost();
+    const handleUpdatePost = async () => {
+        try {
+            const updatedPost = {
+                id: props.postSelected.id,
+                photo: props.postSelected.photo,
+                body: updatedText,
+                user: user
+            };
+
+            await updatePostMutation.mutateAsync(updatedPost);
+            props.setPostSelected(null)
+        } catch (error) {
+            console.error('Error updating post:', error);
         }
-        params.handleEditClick(post);
-        params.onUpdate(params.editPost);
     };
+
+    const handleClosePostEdit = () => {
+        props.setPostSelected(null)
+    }
     const handleTextChange = (e) => {
         setUpdatedText(e.target.value);
-        setI(e.target.value);
     };
 
     return (
         <PostEdit
+            onClose={handleClosePostEdit}
+            userName={user.name}
+            updatedText={updatedText}
             handleTextChange={handleTextChange}
-            handleUpdateClick={handleUpdateClick()}
+            handleUpdateClick={handleUpdatePost}
         />
     );
 };

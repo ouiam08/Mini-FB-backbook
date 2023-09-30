@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
-const validateRouteExists =  (path) => {
+
+const validateRouteExists = (path) => {
     const routes = ["/", "/signin", "/profile/:id",
         "/register"];
     return routes.includes(path);
 };
-const PrivateRoute = ({ redirectTo,children }) => {
+const PrivateRoute = ({redirectTo, children}) => {
     const navigate = useNavigate();
     const userId = Cookies.get('userID');
 
@@ -16,21 +17,21 @@ const PrivateRoute = ({ redirectTo,children }) => {
 
     useEffect(() => {
         const routeExists = validateRouteExists(redirectTo);
-        if(routeExists) {
+        if (routeExists) {
             if (redirectTo !== "/register" && !isAuthenticated()) {
                 navigate("/signin", {replace: true});
             } else if ((redirectTo === "/register" || redirectTo === "/signin") && isAuthenticated()) {
                 navigate("/", {replace: true});
             }
-        }else {
-            if(isAuthenticated()){
+        } else {
+            if (isAuthenticated()) {
                 navigate("/", {replace: true});
-            }else {
+            } else {
                 navigate("/signin", {replace: true});
             }
         }
 
-    }, [navigate,redirectTo]);
+    }, [navigate, redirectTo]);
 
     return <>{children}</>;
 };

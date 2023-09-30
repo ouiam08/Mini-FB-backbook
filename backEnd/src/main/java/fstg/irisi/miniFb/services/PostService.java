@@ -8,6 +8,7 @@ import fstg.irisi.miniFb.domain.model.Post;
 import fstg.irisi.miniFb.domain.repositories.PostRepository;
 import fstg.irisi.miniFb.domain.representations.PostRepresentation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,7 +23,7 @@ public class PostService {
     private final UserMapper userMapper;
 
     public List<PostRepresentation> getAll() {
-        return postMapper.convertToPostRepresentationList(postRepository.findAll());
+        return postMapper.convertToPostRepresentationList(postRepository.findAll(Sort.by(Sort.Order.desc("postTime"))));
     }
 
 

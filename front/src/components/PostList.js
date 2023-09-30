@@ -4,25 +4,24 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBook, faClose, faComment, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import NewCommentContainer from '../containers/NewCommentContainer';
 import CommentListContainer from '../containers/CommentListContainer';
-import PostEdit from './PostEdit';
+import PostEditContainer from "../containers/PostEditContainer";
 
 function PostList({
                       postList,
-                      handleEditClick,
-                      handleUpdatePost,
-                      editPost,
                       handleCommentListDisplay,
                       displayCommentList,
-                      handleClosePostEdit,
-                      handleEditPostClick,
                       handleDeleteClick,
-                      selectedPostId,userId,nbreComment
+                      user,
+                      nbreComment,
+                      postSelected,
+                      setPostSelected
+
                   }) {
 
 
     return (
         <>
-            
+
 
             <div>
                 {postList.map((post) => (
@@ -34,13 +33,20 @@ function PostList({
                                 <div className='text-green-800 font-beezee font-semibold'>{post.user.name}</div>
                                 <div className='text-gray-400 font-beezee'>{post.time}</div>
                             </div>
-                            {userId == post.user.id &&
+                            {user.id == post.user.id &&
                                 <div className='ml-auto'>
-                                <FontAwesomeIcon icon={faBook} className='ml-8 text-gray-600 cursor-pointer'
-                                                 onClick={() => handleEditPostClick(post.id)}/>
-                                <FontAwesomeIcon icon={faClose} className='ml-8 mr-8 text-gray-600 cursor-pointer'
-                                                 onClick={() => handleDeleteClick(post.id)}/>
-                            </div>
+                                    <FontAwesomeIcon
+                                        icon={faBook}
+                                        className='ml-8 text-gray-600 cursor-pointer'
+                                        onClick={() => setPostSelected(post)}
+                                    />
+                                    <FontAwesomeIcon icon={faClose} className='ml-8 mr-8 text-gray-600 cursor-pointer'
+                                                     onClick={() => handleDeleteClick(post.id)}/>
+
+                                    {postSelected !== null && <PostEditContainer setPostSelected={setPostSelected}
+                                                                                 postSelected={postSelected}/>}
+                                </div>
+
                             }
 
                         </div>
@@ -68,16 +74,10 @@ function PostList({
                                 </div>
                             </div>
                             <hr/>
-                            {displayCommentList && <CommentListContainer postId={post.id} />}
+                            {displayCommentList && <CommentListContainer postId={post.id}/>}
                         </div>
-                        <NewCommentContainer postId={post.id} />
-                        {selectedPostId === post.id && <PostEdit
-                            postId={post.id}
-                            postBody={post.body}
-                            handleEditClick={handleEditClick}
-                            editPost={editPost}
-                            onClose={handleClosePostEdit}
-                            onUpdate={handleUpdatePost}/>}
+                        <NewCommentContainer post={post}/>
+
                     </div>
                 ))}
 

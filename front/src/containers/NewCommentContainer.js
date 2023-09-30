@@ -5,9 +5,8 @@ import NewComment from '../components/NewComment';
 import Cookies from "js-cookie";
 
 function NewCommentContainer(params) {
-    const userId = Cookies.get('userID');
     const {insertCommentMutation} = useInsertComment();
-    const [newCommentData, setNewCommentData] = useState({text: '', postId: '', userId: 0});
+    const [newCommentData, setNewCommentData] = useState({body: '', user: {}, post: {}});
     const user = useGetUserByID(Cookies.get('userID')).data;
 
 
@@ -15,16 +14,12 @@ function NewCommentContainer(params) {
         try {
             const defaultComment = {
                 body: comment.text,
-                post: {
-                    post_id: comment.postId,
-                    post_body: "hi",
-                },
+                post: params.post,
                 user: user
             };
-            console.log("Nchof hna: ", comment.text, comment.postId, comment.userId);
             await insertCommentMutation.mutateAsync(defaultComment);
 
-            setNewCommentData({text: '', postId: '', userId: 0});
+            setNewCommentData({body: '', user: {}, post: {}});
         } catch (error) {
             console.error('Error inserting comment:', error);
         }
@@ -44,10 +39,9 @@ function NewCommentContainer(params) {
         if (comment.trim() === '') {
             return;
         }
-        console.log("Db comment : ", postId, userId, comment);
         const newComment = {
             postId: postId,
-            userId: 4,
+            userId: user.id,
             text: comment
         };
         handleAddComment(newComment);
@@ -63,7 +57,7 @@ function NewCommentContainer(params) {
                 handleChange={handleChange}
                 handleCommentSubmit={handleCommentSubmit}
                 comment={comment}
-                postId = {params.postId}
+                postId={params.postId}
             />
         </div>
     );

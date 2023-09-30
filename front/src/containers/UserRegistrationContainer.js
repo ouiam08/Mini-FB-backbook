@@ -10,23 +10,23 @@ function UserRegistrationContainer() {
 
     const handleRegister = async () => {
         if (userData.name !== '' && userData.password !== '') {
-            if(userData.password === userData.confirmPassword){
-            try {
-                const user = {
-                    name: userData.name,
-                    password: userData.password
-                };
+            if (userData.password === userData.confirmPassword) {
+                try {
+                    const user = {
+                        name: userData.name,
+                        password: userData.password
+                    };
 
-                await registerUserMutation.mutateAsync(user);
-                setUserData({name: '', password: ''});
+                    await registerUserMutation.mutateAsync(user);
+                    setUserData({name: '', password: ''});
 
 
-            } catch (error) {
-                setResponse(error.response.data)
+                } catch (error) {
+                    setResponse(error.response.data)
+                }
+            } else {
+                setResponse('passwords do not match')
             }
-        }else{
-            setResponse('passwords do not match')
-        }
         } else {
             setResponse('Name and password should not be empty!')
         }
@@ -36,9 +36,7 @@ function UserRegistrationContainer() {
         const {name, value} = e.target;
         setUserData({...userData, [name]: value});
     };
-    const handleConfirmChange = () => {
 
-    };
 
     if (registerUserMutation.status === "success") {
         window.location.href = "/signin"
@@ -48,7 +46,6 @@ function UserRegistrationContainer() {
 
         <UserRegistration
             handleInputChange={handleInputChange}
-            handleConfirmChange={handleConfirmChange}
             handleRegister={handleRegister}
             userData={userData}
             response={response}
