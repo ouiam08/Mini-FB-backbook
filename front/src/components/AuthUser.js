@@ -3,6 +3,7 @@ import Header from './Layouts/Header'
 import Footer from './Layouts/Footer'
 import Earth from './../Assets/images/earth.jpg'
 
+
 const AuthUser = ({formData, handleInputChange, handleSubmit, response}) => {
     return (
         <div className="bg-gray-200 h-screen">

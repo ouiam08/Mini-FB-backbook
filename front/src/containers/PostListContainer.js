@@ -5,6 +5,7 @@ import useUpdatePost from '../hooks/posts/useUpdatePost';
 import PostList from '../components/PostList';
 import Cookies from "js-cookie";
 import useGetUserByID from "../hooks/users/useGetUserByID";
+import useGetPostComments from "../hooks/comments/useGetPostComments";
 
 function PostListContainer() {
     const {postList} = useGetPosts();
@@ -17,6 +18,8 @@ function PostListContainer() {
     const [selectedPostId, setSelectedPostId] = useState(null);
     const userId = Cookies.get('userID');
     const user = useGetUserByID(userId).data;
+
+
 
     const handleDeletePost = async (postId) => {
         if (!deleteCalled) {
@@ -67,6 +70,11 @@ function PostListContainer() {
         setSelectedPostId(null);
     }
 
+     function NbreComment   (postId){
+        const {commentList} = useGetPostComments(postId);
+        return commentList.length;
+    }
+
 
 
     return (
@@ -85,6 +93,8 @@ function PostListContainer() {
                 handleEditPostClick={handleEditPostClick}
                 handleDeleteClick={handleDeleteClick}
                 selectedPostId={selectedPostId}
+                userId={userId}
+                nbreComment={NbreComment}
             />
         </div>
     );
