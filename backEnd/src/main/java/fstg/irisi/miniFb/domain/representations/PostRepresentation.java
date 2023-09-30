@@ -14,4 +14,5 @@ public class PostRepresentation {
     private byte[] photo;
     private String body;
     private UserRepresentation user;
+    private String time;
 }
