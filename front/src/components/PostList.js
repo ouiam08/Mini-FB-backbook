@@ -11,7 +11,8 @@ function PostList({
                       handleEditClick,
                       handleUpdatePost,
                       editPost,
-                    //   handleDeconnexion,
+                      handleCommentListDisplay,
+                      displayCommentList,
                       handleClosePostEdit,
                       handleEditPostClick,
                       handleDeleteClick,
@@ -51,15 +52,16 @@ function PostList({
                                 <div className='cursor-pointer'><FontAwesomeIcon icon={faThumbsUp}
                                                                                  className='text-gray-500 text-xl mr-2'/>React
                                 </div>
-                                <div className='cursor-pointer'><FontAwesomeIcon icon={faComment}
-                                                                                 className='text-gray-500 text-xl mr-2'/>Comment
+                                <div className='cursor-pointer' onClick={handleCommentListDisplay}>
+                                    <FontAwesomeIcon icon={faComment} className='text-gray-500 text-xl mr-2'/>
+                                    Comment
                                 </div>
                                 <div className='cursor-pointer'><FontAwesomeIcon icon={faShare}
                                                                                  className='text-gray-500 text-xl mr-2'/>Post
                                 </div>
                             </div>
                             <hr/>
-                            <CommentListContainer postId={post.id} />
+                            {displayCommentList && <CommentListContainer postId={post.id} />}
                         </div>
                         <NewCommentContainer postId={post.id} />
                         {selectedPostId === post.id && <PostEdit

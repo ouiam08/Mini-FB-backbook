@@ -11,7 +11,7 @@ function PostListContainer() {
     const {deletePostMutation} = useDeletePost();
     const {updatePostMutation} = useUpdatePost();
     const [deleteCalled, setDeleteCalled] = useState(false);
-
+    const [displayCommentList, setDisplayCommentList] = useState(false);
     const [editPost, setEditPost] = useState(null);
     const [updatedPostData, setUpdatedPostData] = useState({photo: [], body: ''});
     const [selectedPostId, setSelectedPostId] = useState(null);
@@ -29,11 +29,14 @@ function PostListContainer() {
         }
     };
 
-
     const handleEditClick = (post) => {
         setEditPost(post);
         setUpdatedPostData({photo: post.photo, body: post.body});
     };
+
+    const handleCommentListDisplay = () => {
+        setDisplayCommentList(!displayCommentList);
+      };
 
     const handleUpdatePost = async () => {
         try {
@@ -74,6 +77,8 @@ function PostListContainer() {
                 handleEditClick={handleEditClick}
                 handleUpdatePost={handleUpdatePost}
                 editPost={editPost}
+                displayCommentList={displayCommentList}
+                handleCommentListDisplay={handleCommentListDisplay}
                 updatedPostData={updatedPostData}
                 setUpdatedPostData={setUpdatedPostData}
                 handleClosePostEdit={handleClosePostEdit}
