@@ -1,7 +1,7 @@
 import React from 'react'
 import Person from '../Assets/images/person.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function PostEdit(params) {
 
