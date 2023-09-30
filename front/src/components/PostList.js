@@ -15,7 +15,7 @@ function PostList({
                       handleClosePostEdit,
                       handleEditPostClick,
                       handleDeleteClick,
-                      selectedPostId
+                      selectedPostId,userId,nbreComment
                   }) {
 
 
@@ -32,21 +32,28 @@ function PostList({
                             <img src={Mark} alt='postownerimage'
                                  className='w-16 h-16 rounded-full p-2 cursor-pointer m-2'/>
                             <div className='mt-4'>
-                                <div className='text-green-800 font-beezee font-semibold'>postOwnerName</div>
-                                <div className='text-gray-400 font-beezee'>Il y a 1 heure</div>
+                                <div className='text-green-800 font-beezee font-semibold'>{post.user.name}</div>
+                                <div className='text-gray-400 font-beezee'>{post.time}</div>
                             </div>
-                            <div className='ml-auto'>
+                            {userId == post.user.id &&
+                                <div className='ml-auto'>
                                 <FontAwesomeIcon icon={faBook} className='ml-8 text-gray-600 cursor-pointer'
                                                  onClick={() => handleEditPostClick(post.id)}/>
                                 <FontAwesomeIcon icon={faClose} className='ml-8 mr-8 text-gray-600 cursor-pointer'
                                                  onClick={() => handleDeleteClick(post.id)}/>
                             </div>
+                            }
+
                         </div>
                         <div className='ml-2 mr-2'>{post.body}</div>
                         <div className='ml-4 mt-2 cursor-pointer'>
                             <span>33</span>
-                            <FontAwesomeIcon icon={faThumbsUp} className='text-green-800 ml-2'/>
+                            <FontAwesomeIcon icon={faThumbsUp} className='text-green-800 ml-2 mr-3'/>
+
+                            <span>{nbreComment(post.id)}</span>
+                            <FontAwesomeIcon icon={faComment} className='text-green-800 ml-2'/>
                         </div>
+
                         <div className='mt-2'>
                             <hr/>
                             <div className='flex justify-between m-2 ml-20 mr-20'>
