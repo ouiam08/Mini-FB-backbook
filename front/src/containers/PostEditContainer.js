@@ -3,6 +3,7 @@ import PostEdit from "../components/PostEdit";
 
 const PostEditContainer = (params) => {
     const [updatedText, setUpdatedText] = useState(params.postBody);
+    const [i, setI] = useState("hhhhhhhhh");
     const handleUpdateClick = () => {
         const post = {
             id: params.postId,
@@ -14,6 +15,7 @@ const PostEditContainer = (params) => {
     };
     const handleTextChange = (e) => {
         setUpdatedText(e.target.value);
+        setI(e.target.value);
     };
 
     return (
