@@ -9,6 +9,9 @@ import fstg.irisi.miniFb.domain.repositories.PostRepository;
 import fstg.irisi.miniFb.domain.representations.PostRepresentation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -31,6 +34,7 @@ public class PostService {
         post.setPostBody(body);
         post.setPostOwner(userMapper.convertToUser(command));
         post.setPostPhoto(photo);
+        post.setPostTime(LocalDateTime.now());
         postRepository.save(post);
         return post.getPostId();
 

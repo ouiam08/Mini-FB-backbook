@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -22,4 +25,5 @@ public class Post {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private FBUser postOwner;
+    private LocalDateTime postTime;
 }
