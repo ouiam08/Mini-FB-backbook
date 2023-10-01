@@ -19,7 +19,7 @@ export const useInsertPost = () => {
     const insertPostMutation = useMutation(
         ["InsertPost"],
         async (post) => {
-            const insertPost =await insertPostFn(post);
+            const insertPost = await insertPostFn(post);
             queryClient.invalidateQueries(["fetchAllPosts"]);
             return insertPost;
         }

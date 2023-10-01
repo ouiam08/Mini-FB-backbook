@@ -1,7 +1,5 @@
 package fstg.irisi.miniFb.domain.command;
 
-import fstg.irisi.miniFb.domain.model.FBUser;
-import fstg.irisi.miniFb.domain.model.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

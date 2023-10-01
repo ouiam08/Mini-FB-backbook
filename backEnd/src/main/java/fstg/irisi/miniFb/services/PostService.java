@@ -5,7 +5,6 @@ import fstg.irisi.miniFb.domain.command.UserCommand;
 import fstg.irisi.miniFb.domain.mappers.PostMapper;
 import fstg.irisi.miniFb.domain.mappers.UserMapper;
 import fstg.irisi.miniFb.domain.model.Post;
-import fstg.irisi.miniFb.domain.repositories.CommentRepository;
 import fstg.irisi.miniFb.domain.repositories.PostRepository;
 import fstg.irisi.miniFb.domain.representations.PostRepresentation;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service

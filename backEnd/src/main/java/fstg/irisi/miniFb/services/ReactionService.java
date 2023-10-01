@@ -4,11 +4,12 @@ import fstg.irisi.miniFb.domain.command.ReactionCommand;
 import fstg.irisi.miniFb.domain.mappers.PostMapper;
 import fstg.irisi.miniFb.domain.mappers.ReactionMapper;
 import fstg.irisi.miniFb.domain.mappers.UserMapper;
+import fstg.irisi.miniFb.domain.model.Reaction;
+import fstg.irisi.miniFb.domain.repositories.ReactionRepository;
 import fstg.irisi.miniFb.domain.representations.ReactionRepresentation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import fstg.irisi.miniFb.domain.model.Reaction;
-import fstg.irisi.miniFb.domain.repositories.ReactionRepository;
+
 import java.util.List;
 
 @Service

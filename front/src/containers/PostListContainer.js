@@ -4,7 +4,6 @@ import useDeletePost from '../hooks/posts/useDeletePost';
 import PostList from '../components/PostList';
 import Cookies from "js-cookie";
 import useGetUserByID from "../hooks/users/useGetUserByID";
-import useGetPostComments from "../hooks/comments/useGetPostComments";
 
 function PostListContainer() {
     const {postList} = useGetPosts();
@@ -15,11 +14,11 @@ function PostListContainer() {
 
 
     const handleDeletePost = async (postId) => {
-            try {
-                await deletePostMutation.mutateAsync(postId);
-            } catch (error) {
-                console.error('Error deleting post:', error);
-            }
+        try {
+            await deletePostMutation.mutateAsync(postId);
+        } catch (error) {
+            console.error('Error deleting post:', error);
+        }
 
     };
 
@@ -32,9 +31,6 @@ function PostListContainer() {
     const handleDeleteClick = (postId) => {
         handleDeletePost(postId);
     }
-
-
-
 
 
     return (

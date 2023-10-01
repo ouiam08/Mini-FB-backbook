@@ -5,15 +5,11 @@ import fstg.irisi.miniFb.domain.command.CommentCommand;
 import fstg.irisi.miniFb.domain.representations.CommentRepresentation;
 import fstg.irisi.miniFb.services.CommentService;
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController

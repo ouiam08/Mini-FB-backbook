@@ -1,13 +1,7 @@
 package fstg.irisi.miniFb.domain.mappers;
 
-import fstg.irisi.miniFb.domain.command.PostCommand;
-import fstg.irisi.miniFb.domain.command.UserCommand;
 import fstg.irisi.miniFb.domain.model.Comment;
-import fstg.irisi.miniFb.domain.model.FBUser;
-import fstg.irisi.miniFb.domain.model.Post;
 import fstg.irisi.miniFb.domain.representations.CommentRepresentation;
-import fstg.irisi.miniFb.domain.representations.PostRepresentation;
-import fstg.irisi.miniFb.domain.representations.UserRepresentation;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
 

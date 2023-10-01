@@ -1,14 +1,11 @@
 package fstg.irisi.miniFb.domain.mappers;
 
 import fstg.irisi.miniFb.domain.command.PostCommand;
-import fstg.irisi.miniFb.domain.command.UserCommand;
 import fstg.irisi.miniFb.domain.model.FBUser;
 import fstg.irisi.miniFb.domain.model.Post;
 import fstg.irisi.miniFb.domain.repositories.CommentRepository;
 import fstg.irisi.miniFb.domain.representations.PostRepresentation;
-import fstg.irisi.miniFb.domain.representations.UserRepresentation;
 import lombok.Builder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -59,7 +56,7 @@ public class PostMapper {
 
     public String timeTraitement(Post post) {
         if (post.getPostTime() == null) {
-            return "Time not available"; 
+            return "Time not available";
         }
 
         LocalDateTime postTime = post.getPostTime();

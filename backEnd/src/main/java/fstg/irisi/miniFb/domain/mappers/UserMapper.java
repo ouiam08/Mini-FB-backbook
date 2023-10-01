@@ -6,8 +6,6 @@ import fstg.irisi.miniFb.domain.representations.UserRepresentation;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 @Builder
 public class UserMapper {

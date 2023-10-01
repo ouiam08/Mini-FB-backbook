@@ -4,7 +4,6 @@ import fstg.irisi.miniFb.api.common.ResourcePath;
 import fstg.irisi.miniFb.domain.command.UserCommand;
 import fstg.irisi.miniFb.domain.representations.UserRepresentation;
 import fstg.irisi.miniFb.services.UserService;
-import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
