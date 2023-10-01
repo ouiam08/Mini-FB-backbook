@@ -37,10 +37,10 @@ function PostList({
                                 <div className='ml-auto'>
                                     <FontAwesomeIcon
                                         icon={faBook}
-                                        className='ml-8 text-gray-600 cursor-pointer'
+                                        className='ml-8 bg-green-800 text-white rounded-full p-2 cursor-pointer'
                                         onClick={() => setPostSelected(post)}
                                     />
-                                    <FontAwesomeIcon icon={faClose} className='ml-8 mr-8 text-gray-600 cursor-pointer'
+                                    <FontAwesomeIcon icon={faClose} className='ml-8 mr-8 bg-green-800 text-white rounded-full p-2 cursor-pointer'
                                                      onClick={() => handleDeleteClick(post.id)}/>
 
                                     {postSelected !== null && <PostEditContainer setPostSelected={setPostSelected}

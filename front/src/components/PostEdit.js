@@ -28,7 +28,7 @@ function PostEdit({
                     <p className='m-1 font-semibold text-green-800'>{userName}</p>
                 </div>
                 <div><textarea
-                    className='bg-transparent outline-none border-none overflow-hidden resize-none text-black h-30 w-80'
+                    className='bg-gray-100 rounded-lg p-4 ml-4 outline-none border-none overflow-hidden resize-none text-black h-30 w-80'
                     value={updatedText}
                     onChange={handleTextChange}
                 /></div>
