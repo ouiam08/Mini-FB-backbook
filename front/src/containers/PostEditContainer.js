@@ -5,7 +5,6 @@ import Cookies from "js-cookie";
 import useUpdatePost from "../hooks/posts/useUpdatePost";
 
 const PostEditContainer = (props) => {
-    console.log(props.post)
     const [updatedText, setUpdatedText] = useState(props.postSelected.body);
     const user = useGetUserByID(Cookies.get('userID')).data;
     const {updatePostMutation} = useUpdatePost();

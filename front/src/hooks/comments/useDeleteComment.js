@@ -18,9 +18,9 @@ export const useDeleteComment = () => {
 
     const deleteCommentMutation = useMutation(
         ["deleteComment"],
-        (commentId) => {
-            const deletedComment = deleteCommentFn(commentId);
-            queryClient.invalidateQueries(["fetchAllComments"]);
+        async (commentId) => {
+            const deletedComment =await deleteCommentFn(commentId);
+            queryClient.invalidateQueries(["fetchPostComments"]);
             return deletedComment;
         }
     );

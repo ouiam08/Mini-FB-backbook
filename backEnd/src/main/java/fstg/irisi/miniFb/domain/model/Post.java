@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,4 +27,11 @@ public class Post {
     @JoinColumn(name = "user_id")
     private FBUser postOwner;
     private LocalDateTime postTime;
+
+    @OneToMany(mappedBy = "commentPost", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "postReaction", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reaction> reactions;
+
 }

@@ -12,7 +12,6 @@ function PostList({
                       displayCommentList,
                       handleDeleteClick,
                       user,
-                      nbreComment,
                       postSelected,
                       setPostSelected
 
@@ -54,8 +53,7 @@ function PostList({
                         <div className='ml-4 mt-2 cursor-pointer'>
                             <span>33</span>
                             <FontAwesomeIcon icon={faThumbsUp} className='text-green-800 ml-2 mr-3'/>
-
-                            <span>{nbreComment(post.id)}</span>
+                            <span>{post.nbreComment}</span>
                             <FontAwesomeIcon icon={faComment} className='text-green-800 ml-2'/>
                         </div>
 

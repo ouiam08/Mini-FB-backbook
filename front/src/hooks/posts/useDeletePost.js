@@ -18,8 +18,8 @@ export const useDeletePost = () => {
 
     const deletePostMutation = useMutation(
         ["deletePost"],
-        (postId) => {
-            const deletedPost = deletePostFn(postId);
+        async(postId) => {
+            const deletedPost = await deletePostFn(postId);
             queryClient.invalidateQueries(["fetchAllPosts"]);
             return deletedPost;
         }

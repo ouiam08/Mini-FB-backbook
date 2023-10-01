@@ -9,21 +9,18 @@ import useGetPostComments from "../hooks/comments/useGetPostComments";
 function PostListContainer() {
     const {postList} = useGetPosts();
     const {deletePostMutation} = useDeletePost();
-    const [deleteCalled, setDeleteCalled] = useState(false);
     const [displayCommentList, setDisplayCommentList] = useState(false);
     const user = useGetUserByID(Cookies.get('userID')).data;
     const [isPostSelected, setIsPostSelected] = useState(null)
 
 
     const handleDeletePost = async (postId) => {
-        if (!deleteCalled) {
             try {
                 await deletePostMutation.mutateAsync(postId);
-                setDeleteCalled(true);
             } catch (error) {
                 console.error('Error deleting post:', error);
             }
-        }
+
     };
 
 
@@ -34,14 +31,10 @@ function PostListContainer() {
 
     const handleDeleteClick = (postId) => {
         handleDeletePost(postId);
-        console.log("post deleted successfully", postId);
     }
 
 
-    function NbreComment(postId) {
-        const {commentList} = useGetPostComments(postId);
-        return commentList.length;
-    }
+
 
 
     return (
@@ -53,7 +46,6 @@ function PostListContainer() {
                 handleCommentListDisplay={handleCommentListDisplay}
                 handleDeleteClick={handleDeleteClick}
                 user={user}
-                nbreComment={NbreComment}
                 setPostSelected={setIsPostSelected}
                 postSelected={isPostSelected}
 
