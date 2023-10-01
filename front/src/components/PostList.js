@@ -8,8 +8,6 @@ import PostEditContainer from "../containers/PostEditContainer";
 
 function PostList({
                       postList,
-                      handleCommentListDisplay,
-                      displayCommentList,
                       handleDeleteClick,
                       user,
                       postSelected,
@@ -32,7 +30,7 @@ function PostList({
                                 <div className='text-green-800 font-beezee font-semibold'>{post.user.name}</div>
                                 <div className='text-gray-400 font-beezee'>{post.time}</div>
                             </div>
-                            {user.id == post.user.id &&
+                            {user.id === post.user.id &&
                                 <div className='ml-auto'>
                                     <FontAwesomeIcon
                                         icon={faBook}
@@ -63,7 +61,7 @@ function PostList({
                                 <div className='cursor-pointer'><FontAwesomeIcon icon={faThumbsUp}
                                                                                  className='text-gray-500 text-xl mr-2'/>React
                                 </div>
-                                <div className='cursor-pointer' onClick={handleCommentListDisplay}>
+                                <div className='cursor-pointer'>
                                     <FontAwesomeIcon icon={faComment} className='text-gray-500 text-xl mr-2'/>
                                     Comment
                                 </div>
@@ -72,7 +70,7 @@ function PostList({
                                 </div>
                             </div>
                             <hr/>
-                            {displayCommentList && <CommentListContainer postId={post.id}/>}
+                            {<CommentListContainer postId={post.id}/>}
                         </div>
                         <NewCommentContainer post={post}/>
 

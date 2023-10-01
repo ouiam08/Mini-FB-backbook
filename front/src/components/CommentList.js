@@ -6,7 +6,7 @@ function CommentList(
 ) {
     return (
         <>
-            <div>
+            <div className='overflow-auto w-full max-h-44 '>
                 {props.commentList.map((comment) => (
                     <div key={comment.id} className='inline-flex w-full'>
                         <img src={Person} alt='' className='w-6 h-6 rounded-full m-4'/>

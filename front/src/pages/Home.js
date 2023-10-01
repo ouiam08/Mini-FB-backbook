@@ -13,14 +13,15 @@ function Home() {
         window.location.href = '/signin'
     }
     const userId = Cookies.get('userID');
-    const {status, data} = useGetUserByID(userId);
+    const { data} = useGetUserByID(userId);
 
     return (
-        <div className='bg-gray-200'>
-            <Header handleDeconnexion={handleDeconnexion} name={data ? data.name : "Loading..."}/>
-            <NewPostContainer/>
-            <PostListContainer/>
-            <Footer/>
+        <div className="flex flex-col min-h-screen bg-gray-200">
+            <Header handleDeconnexion={handleDeconnexion} name={data ? data.name : 'Loading...'} />
+            <NewPostContainer />
+            <PostListContainer />
+            <div className="flex-grow"></div> {/* Add this div to push footer to the bottom */}
+            <Footer />
         </div>
     )
 }
