@@ -21,8 +21,6 @@ function PostEdit({
                                      className='relative right-0 bg-green-custom rounded-full p-1 text-white cursor-pointer fa-solid'
                                      onClick={onClose}/>
                 </div>
-
-                {/* <h2 key={params.postId} className="text-2xl font-semibold mb-4">Edit Post</h2> */}
                 <div className='inline-flex'>
                     <img src={Person} alt='userImage' className='w-8 h-8 rounded-full m-1'/>
                     <p className='m-1 font-semibold text-green-800'>{userName}</p>

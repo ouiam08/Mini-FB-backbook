@@ -15,7 +15,19 @@ function CommentList(
                         <div className='bg-gray-50 rounded-lg w-full m-2 flex'>
                             <div className='w-80'>
                                 <h3 className='m-2 font-bold'>{comment.user.name}</h3>
-                                <p className='m-2 break-normal flex flex-wrap'>{comment.body}</p>
+                                {comment.id === props.editModeCommentId ? 
+                                
+                                        <>
+                                        {props.setDefaultCommentText(comment.body)}
+                                        <textarea 
+                                            className='bg-gray-50 rounded-lg ml-4 outline-none border-none overflow-hidden resize-none text-black w-full'
+                                            value={props.editedCommentText}
+                                            onChange={props.handleTextChange}
+                                        />
+                                        <button className='bg-green-800' onClick={props.handleSaveComment}>Update</button>
+                                        </>
+                                        
+                                        :<p className='m-2 break-normal flex flex-wrap'>{comment.body}</p>}
                             </div>
                             {props.user.id === comment.user.id && 
                                 <div className='ml-auto mt-2'>
@@ -25,11 +37,11 @@ function CommentList(
                                         onClick={() => props.handleParamsList()}
                                     />
                                     {props.paramsListDisplay && <ul className='bg-white rounded p-2 right-40 z-30 absolute'>
-                                        <li className='font-semibold cursor-pointer'>modifier</li>
+                                        <li className='font-semibold cursor-pointer' onClick={()=>props.handleEditComment(comment.id)}>modifier</li>
+                                        
                                         <li className='font-semibold cursor-pointer' onClick={() => props.handleDeleteComment(comment.id)}>supprimer</li>
                                     </ul>
                                     }
-                                    
                                 </div>
                             }
                         </div>
