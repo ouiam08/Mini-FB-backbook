@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Person from './../Assets/images/person.jpg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBook, faClose, faComment, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
@@ -11,10 +11,12 @@ function PostList({
                       handleDeleteClick,
                       user,
                       postSelected,
-                      setPostSelected
+                      setPostSelected,
+                      setSelectedPost,
+                      selectedPost,
 
                   }) {
-const [selectedPost, setSelectedPost] = useState(null)
+
 
     return (
         <>
@@ -37,7 +39,8 @@ const [selectedPost, setSelectedPost] = useState(null)
                                         className='ml-8 bg-green-800 text-white rounded-full p-2 cursor-pointer'
                                         onClick={() => setPostSelected(post)}
                                     />
-                                    <FontAwesomeIcon icon={faClose} className='ml-8 mr-8 bg-green-800 text-white rounded-full p-2 cursor-pointer'
+                                    <FontAwesomeIcon icon={faClose}
+                                                     className='ml-8 mr-8 bg-green-800 text-white rounded-full p-2 cursor-pointer'
                                                      onClick={() => handleDeleteClick(post.id)}/>
 
                                     {postSelected !== null && <PostEditContainer setPostSelected={setPostSelected}
@@ -61,7 +64,8 @@ const [selectedPost, setSelectedPost] = useState(null)
                                 <div className='cursor-pointer'><FontAwesomeIcon icon={faThumbsUp}
                                                                                  className='text-gray-500 text-xl mr-2'/>React
                                 </div>
-                                <div className='cursor-pointer' onClick={()=> setSelectedPost(prevSelectedPost => prevSelectedPost === post ? null : post)}>
+                                <div className='cursor-pointer'
+                                     onClick={() => setSelectedPost(prevSelectedPost => prevSelectedPost === post ? null : post)}>
                                     <FontAwesomeIcon icon={faComment} className='text-gray-500 text-xl mr-2'/>
                                     Comment
                                 </div>

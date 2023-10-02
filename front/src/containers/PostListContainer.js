@@ -10,7 +10,7 @@ function PostListContainer() {
     const {deletePostMutation} = useDeletePost();
     const user = useGetUserByID(Cookies.get('userID')).data;
     const [isPostSelected, setIsPostSelected] = useState(null);
-
+    const [selectedPost, setSelectedPost] = useState(null)
 
     const handleDeletePost = async (postId) => {
         try {
@@ -36,7 +36,8 @@ function PostListContainer() {
                 user={user}
                 setPostSelected={setIsPostSelected}
                 postSelected={isPostSelected}
-
+                setSelectedPost={setSelectedPost}
+                selectedPost={selectedPost}
             />
         </div>
     );

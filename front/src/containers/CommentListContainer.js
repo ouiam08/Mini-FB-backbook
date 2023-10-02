@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import useGetPostComments from '../hooks/comments/useGetPostComments';
 import CommentList from '../components/CommentList';
 import Cookies from "js-cookie";
@@ -13,14 +13,14 @@ function CommentListContainer(props) {
     const [deleteCalled, setDeleteCalled] = useState(false);
     const [selectedComment, setSelectedComment] = useState('');
     const user = useGetUserByID(Cookies.get('userID')).data;
-    const [paramsListDisplay , setParamsListDisplay] = useState(false);
+    const [paramsListDisplay, setParamsListDisplay] = useState(false);
     const [editModeCommentId, setEditModeCommentId] = useState(null);
 
     const handleEditComment = (commentId) => {
         setEditModeCommentId(commentId);
         setParamsListDisplay(!paramsListDisplay);
     };
-    const handleTextChange = (e)=>{
+    const handleTextChange = (e) => {
         setSelectedComment(e.target.value);
     }
     const handleSaveComment = async () => {
@@ -32,13 +32,13 @@ function CommentListContainer(props) {
                 body: selectedComment
             }
             await updateCommentMutation.mutateAsync(updatedComment);
-          setEditModeCommentId(null);
+            setEditModeCommentId(null);
         } catch (error) {
-          console.error("Error updating comment:", error);
+            console.error("Error updating comment:", error);
         }
-      };
-      
-    const handleParamsList = () =>{
+    };
+
+    const handleParamsList = () => {
         setParamsListDisplay(!paramsListDisplay);
     }
     const handleDeleteComment = async (commentId) => {
