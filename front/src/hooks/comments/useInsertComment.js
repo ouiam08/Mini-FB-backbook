@@ -21,6 +21,7 @@ export const useInsertComment = () => {
         async (comment) => {
             const insertComment = await insertCommentFn(comment);
             queryClient.invalidateQueries(["fetchPostComments"]);
+            queryClient.invalidateQueries(["fetchAllPosts"]);
             return insertComment;
         }
     );

@@ -20,7 +20,7 @@ function Home() {
             <Header handleDeconnexion={handleDeconnexion} name={data ? data.name : 'Loading...'} />
             <NewPostContainer />
             <PostListContainer />
-            <div className="flex-grow"></div> {/* Add this div to push footer to the bottom */}
+            <div className="flex-grow"></div>
             <Footer />
         </div>
     )
