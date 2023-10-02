@@ -11,9 +11,9 @@ function CommentListContainer(props) {
     const {updateCommentMutation} = useUpdateComment();
     const {deleteCommentMutation} = useDeleteComment();
     const [deleteCalled, setDeleteCalled] = useState(false);
+    const [selectedComment, setSelectedComment] = useState('');
     const user = useGetUserByID(Cookies.get('userID')).data;
     const [paramsListDisplay , setParamsListDisplay] = useState(false);
-    const [editedCommentText, setEditedCommentText] = useState('hi');
     const [editModeCommentId, setEditModeCommentId] = useState(null);
 
     const handleEditComment = (commentId) => {
@@ -21,7 +21,7 @@ function CommentListContainer(props) {
         setParamsListDisplay(!paramsListDisplay);
     };
     const handleTextChange = (e)=>{
-        setEditedCommentText(e.target.value);
+        setSelectedComment(e.target.value);
     }
     const handleSaveComment = async () => {
         try {
@@ -29,7 +29,7 @@ function CommentListContainer(props) {
                 id: editModeCommentId,
                 post: props.post,
                 user: user,
-                body: editedCommentText
+                body: selectedComment
             }
             console.log(updatedComment);
             await updateCommentMutation.mutateAsync(updatedComment);
@@ -57,11 +57,10 @@ function CommentListContainer(props) {
             <CommentList
                 editModeCommentId={editModeCommentId}
                 handleEditComment={handleEditComment}
-                editedCommentText={editedCommentText}
                 handleSaveComment={handleSaveComment}
                 handleTextChange={handleTextChange}
-                // setDefaultCommentText={setDefaultCommentText}
-                setEditedCommentText={setEditedCommentText}
+                selectedComment={selectedComment}
+                setSelectedComment={setSelectedComment}
                 commentList={commentList}
                 user={user}
                 paramsListDisplay={paramsListDisplay}

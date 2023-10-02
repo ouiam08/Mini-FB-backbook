@@ -19,7 +19,7 @@ function CommentList(
                                 {comment.id === props.editModeCommentId ? 
                                         <>
                                         <CommetEdit 
-                                            defaultComment={props.editedCommentText}
+                                            selectedComment={props.selectedComment}
                                             handleTextChange={props.handleTextChange}
                                             handleSaveComment={props.handleSaveComment}
                                         />
@@ -31,11 +31,11 @@ function CommentList(
                                     <FontAwesomeIcon
                                         icon={faEllipsis}
                                         className='mr-6 text-gray-500 rounded-full p-1 text-lg cursor-pointer'
-                                        onClick={() => props.handleParamsList()}
+                                        onClick={() => {props.handleParamsList()}}
                                     />
-                                    {props.paramsListDisplay && 
+                                    {props.paramsListDisplay  &&
                                     <ul className='bg-transparent p-2 right-4 z-30 relative'>
-                                        <li className='font-semibold cursor-pointer text-xs bg-gray-300 rounded-lg p-1 m-1' onClick={() => props.handleEditComment(comment.id)}>Edit</li>
+                                        <li className='font-semibold cursor-pointer text-xs bg-gray-300 rounded-lg p-1 m-1' onClick={() => {props.handleEditComment(comment.id); props.setSelectedComment(comment.body);}}>Edit</li>
                                         
                                         <li className='font-semibold cursor-pointer text-xs bg-gray-300 rounded-lg p-1 m-1' onClick={() => props.handleDeleteComment(comment.id)}>Delete</li>
                                     </ul>
