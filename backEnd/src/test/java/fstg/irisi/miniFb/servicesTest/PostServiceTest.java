@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,15 +57,15 @@ public class PostServiceTest {
         postRepresentation2.setId(2);
         postRepresentationList.add(postRepresentation2);
 
-         when(postRepository.findAll()).thenReturn(posts);
+        when(postRepository.findAll(Sort.by(Sort.Order.desc("postTime")))).thenReturn(posts);
         when(postMapper.convertToPostRepresentationList(posts)).thenReturn(postRepresentationList);
 
         List<PostRepresentation> postRepresentationsResult = postService.getAll();
-        verify(postRepository).findAll();
+        verify(postRepository).findAll(Sort.by(Sort.Order.desc("postTime")));
         verify(postMapper).convertToPostRepresentationList(posts);
 
         assertEquals(2, postRepresentationsResult.size());
-        assertEquals(postRepresentationList,postRepresentationsResult);
+        assertEquals(postRepresentationList, postRepresentationsResult);
 
     }
     @Test
