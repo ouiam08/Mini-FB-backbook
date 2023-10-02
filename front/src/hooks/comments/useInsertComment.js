@@ -18,9 +18,9 @@ export const useInsertComment = () => {
 
     const insertCommentMutation = useMutation(
         ["InsertComment"],
-        (comment) => {
-            const insertComment = insertCommentFn(comment);
-            queryClient.invalidateQueries(["fetchAllComments"]);
+        async (comment) => {
+            const insertComment = await insertCommentFn(comment);
+            queryClient.invalidateQueries(["fetchPostComments"]);
             return insertComment;
         }
     );

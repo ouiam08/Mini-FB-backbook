@@ -1,13 +1,11 @@
 package fstg.irisi.miniFb.servicesTest;
 
-import fstg.irisi.miniFb.domain.command.CommentCommand;
 import fstg.irisi.miniFb.domain.command.PostCommand;
 import fstg.irisi.miniFb.domain.command.ReactionCommand;
 import fstg.irisi.miniFb.domain.command.UserCommand;
 import fstg.irisi.miniFb.domain.mappers.PostMapper;
 import fstg.irisi.miniFb.domain.mappers.ReactionMapper;
 import fstg.irisi.miniFb.domain.mappers.UserMapper;
-import fstg.irisi.miniFb.domain.model.Comment;
 import fstg.irisi.miniFb.domain.model.FBUser;
 import fstg.irisi.miniFb.domain.model.Post;
 import fstg.irisi.miniFb.domain.model.Reaction;

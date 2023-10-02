@@ -20,7 +20,7 @@ export const useUpdateComment = () => {
         ["UpdateComment"],
         async (comment) => {
             const updateComment = await updateCommentFn(comment);
-            queryClient.invalidateQueries(["fetchAllComments"]);
+            queryClient.invalidateQueries(["fetchPostComments"]);
             return updateComment;
         }
     );

@@ -3,15 +3,10 @@ package fstg.irisi.miniFb.services;
 import fstg.irisi.miniFb.domain.command.UserCommand;
 import fstg.irisi.miniFb.domain.mappers.UserMapper;
 import fstg.irisi.miniFb.domain.model.FBUser;
-import fstg.irisi.miniFb.domain.repositories.CommentRepository;
 import fstg.irisi.miniFb.domain.repositories.FbUserRepository;
-import fstg.irisi.miniFb.domain.repositories.PostRepository;
-import fstg.irisi.miniFb.domain.repositories.ReactionRepository;
 import fstg.irisi.miniFb.domain.representations.UserRepresentation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

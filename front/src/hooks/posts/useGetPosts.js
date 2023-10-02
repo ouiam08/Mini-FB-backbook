@@ -16,7 +16,9 @@ export const useGetPosts = () => {
     const {status, data, error, refetch} = useQuery({
         queryKey: ["fetchAllPosts"],
         queryFn: () => fetchPostsQueryFn(),
-        refetchOnWindowFocus: true,
+        refetchOnWindowFocus: false
+
+
     });
 
     useEffect(() => {

@@ -1,13 +1,11 @@
 package fstg.irisi.miniFb.domain.mappers;
 
 import fstg.irisi.miniFb.domain.command.PostCommand;
-import fstg.irisi.miniFb.domain.command.UserCommand;
 import fstg.irisi.miniFb.domain.model.FBUser;
 import fstg.irisi.miniFb.domain.model.Post;
+import fstg.irisi.miniFb.domain.repositories.CommentRepository;
 import fstg.irisi.miniFb.domain.representations.PostRepresentation;
-import fstg.irisi.miniFb.domain.representations.UserRepresentation;
 import lombok.Builder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -21,7 +19,7 @@ import java.util.List;
 @Builder
 public class PostMapper {
     private UserMapper userMapper;
-
+    private CommentRepository commentRepository;
     public PostRepresentation convertToPostRepresentation(Post post) {
 
 
@@ -39,6 +37,7 @@ public class PostMapper {
         List<PostRepresentation> representations = new ArrayList<>();
 
         for (Post post : postList) {
+            int nbreComment = commentRepository.findByPostId(post.getPostId()).size();
 
             representations.add(
                     PostRepresentation.builder()
@@ -47,6 +46,7 @@ public class PostMapper {
                             .body(post.getPostBody())
                             .time(timeTraitement(post))
                             .user(userMapper.convertToUserRepresentation(post.getPostOwner()))
+                            .nbreComment(nbreComment)
                             .build()
             );
         }
@@ -56,7 +56,7 @@ public class PostMapper {
 
     public String timeTraitement(Post post) {
         if (post.getPostTime() == null) {
-            return "Time not available"; // You can customize this message
+            return "Time not available";
         }
 
         LocalDateTime postTime = post.getPostTime();

@@ -17,7 +17,6 @@ export const useGetPostComments = (postId) => {
         queryKey: ["fetchPostComments", postId],
         queryFn: () => fetchPostCommentsQueryFn(postId),
         refetchOnWindowFocus: true,
-        enabled: typeof postId !== "undefined",
     });
 
     useEffect(() => {
