@@ -18,7 +18,7 @@ function CommentList(
                                 {comment.id === props.editModeCommentId ? 
                                 
                                         <>
-                                        {props.setDefaultCommentText(comment.body)}
+                                        
                                         <textarea 
                                             className='bg-gray-50 rounded-lg ml-4 outline-none border-none overflow-hidden resize-none text-black w-full'
                                             value={props.editedCommentText}

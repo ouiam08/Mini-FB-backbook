@@ -13,8 +13,8 @@ function CommentListContainer(props) {
     const [deleteCalled, setDeleteCalled] = useState(false);
     const user = useGetUserByID(Cookies.get('userID')).data;
     const [paramsListDisplay , setParamsListDisplay] = useState(false);
-    const [defaultCommentText, setDefaultCommentText] = useState('')
-    const [editedCommentText, setEditedCommentText] = useState(defaultCommentText);
+    // const [defaultCommentText, setDefaultCommentText] = useState('')
+    const [editedCommentText, setEditedCommentText] = useState('');
     const [editModeCommentId, setEditModeCommentId] = useState(null);
 
     const handleEditComment = (commentId) => {
@@ -61,7 +61,7 @@ function CommentListContainer(props) {
                 editedCommentText={editedCommentText}
                 handleSaveComment={handleSaveComment}
                 handleTextChange={handleTextChange}
-                setDefaultCommentText={setDefaultCommentText}
+                // setDefaultCommentText={setDefaultCommentText}
                 setEditedCommentText={setEditedCommentText}
                 commentList={commentList}
                 user={user}
