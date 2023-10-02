@@ -11,13 +11,13 @@ import java.util.List;
 @Component
 @Builder
 public class ReactionMapper {
-    private  UserMapper userMapper;
+    private UserMapper userMapper;
     private PostMapper postMapper;
 
     public List<ReactionRepresentation> convertToReactionRepresentationList(List<Reaction> reactionList) {
         List<ReactionRepresentation> representations = new ArrayList<>();
 
-        for(Reaction reaction : reactionList){
+        for (Reaction reaction : reactionList) {
             representations.add(
                     ReactionRepresentation.builder()
                             .id(reaction.getReactionId())

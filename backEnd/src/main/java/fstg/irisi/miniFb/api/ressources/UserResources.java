@@ -17,18 +17,19 @@ import org.springframework.web.bind.annotation.*;
 @Data
 public class UserResources {
     private final UserService userService;
+
     @GetMapping("/{id}")
-    public ResponseEntity<UserRepresentation> getUerById(@PathVariable Integer id){
+    public ResponseEntity<UserRepresentation> getUerById(@PathVariable Integer id) {
         return ResponseEntity.ok(userService.getById(id));
     }
 
     @PutMapping
-    public ResponseEntity<UserRepresentation> updateUser(@RequestBody UserCommand userCommand){
+    public ResponseEntity<UserRepresentation> updateUser(@RequestBody UserCommand userCommand) {
         return ResponseEntity.ok(userService.update(userCommand));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Integer id){
+    public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
         return ResponseEntity.ok(userService.delete(id));
     }
 }

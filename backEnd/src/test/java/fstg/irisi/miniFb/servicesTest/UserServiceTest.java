@@ -28,7 +28,6 @@ public class UserServiceTest {
     private UserService userService;
 
 
-
     @Test
     void shouldGetUserById_ExistingUser() {
         int userId = 1;

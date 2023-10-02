@@ -27,14 +27,14 @@ public class PostServiceTest {
     @Mock
     private PostRepository postRepository;
     @Mock
-    private  PostMapper postMapper;
+    private PostMapper postMapper;
     @InjectMocks
     private PostService postService;
     @Mock
     private UserMapper userMapper;
 
     @Test
-    public void shouldGetAllPosts(){
+    public void shouldGetAllPosts() {
         List<Post> posts = new ArrayList<>();
         Post post1 = new Post();
         post1.setPostId(1);
@@ -68,8 +68,9 @@ public class PostServiceTest {
         assertEquals(postRepresentationList, postRepresentationsResult);
 
     }
+
     @Test
-    public void shouldCreatePost(){
+    public void shouldCreatePost() {
         PostCommand command = new PostCommand();
         UserCommand userCommand = new UserCommand();
         userCommand.setName("test user");
@@ -92,8 +93,9 @@ public class PostServiceTest {
         verify(postRepository).save(any(Post.class));
         assertEquals(expectedPost.getPostId(), createdPostID);
     }
+
     @Test
-    public void shouldUpdatePost(){
+    public void shouldUpdatePost() {
         int postIdToUpdate = 123;
 
         PostCommand postCommand = new PostCommand();
@@ -132,8 +134,9 @@ public class PostServiceTest {
         assertEquals(updatedPhoto, result.getPhoto());
 
     }
+
     @Test
-    public void shouldDeletePost(){
+    public void shouldDeletePost() {
         int postIdToDelete = 123;
         String result = postService.delete(postIdToDelete);
         verify(postRepository).deleteById(postIdToDelete);

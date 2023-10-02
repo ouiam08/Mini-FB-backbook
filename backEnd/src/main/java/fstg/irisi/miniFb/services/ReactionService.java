@@ -15,10 +15,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ReactionService {
-        private final ReactionRepository reactionRepository;
-        private final ReactionMapper reactionMapper;
-        private final UserMapper userMapper;
-        private final PostMapper postMapper;
+    private final ReactionRepository reactionRepository;
+    private final ReactionMapper reactionMapper;
+    private final UserMapper userMapper;
+    private final PostMapper postMapper;
 
 
     public List<ReactionRepresentation> getAll() {
@@ -41,18 +41,18 @@ public class ReactionService {
     public ReactionRepresentation update(ReactionCommand reactionCommand) {
         Reaction existingReaction = reactionRepository.findById(reactionCommand.getId())
                 .orElseThrow(() -> new IllegalArgumentException("reaction.not.found with id" + reactionCommand.getId()));
-        
+
         existingReaction.setReactionType(reactionCommand.getType());
         reactionRepository.save(existingReaction);
         return reactionMapper.convertToReactionRepresentation(existingReaction);
     }
-    
+
 
     public String delete(int reactionId) {
-        if(reactionId != 0) {
+        if (reactionId != 0) {
             reactionRepository.deleteById(reactionId);
         }
         return "Reaction deleted!";
     }
-    
+
 }

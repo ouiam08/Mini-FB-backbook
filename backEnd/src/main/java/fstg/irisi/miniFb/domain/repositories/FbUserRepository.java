@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface FbUserRepository extends JpaRepository<FBUser, Integer> {
     Boolean existsByUserName(String username);
+
     Optional<FBUser> findByUserName(String username);
 }

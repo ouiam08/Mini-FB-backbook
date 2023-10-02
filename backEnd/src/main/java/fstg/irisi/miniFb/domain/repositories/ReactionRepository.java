@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 
-public interface ReactionRepository extends JpaRepository<Reaction,Integer> {
+public interface ReactionRepository extends JpaRepository<Reaction, Integer> {
     @Query("SELECT r FROM Reaction r WHERE r.postReaction.postId = :postId")
     List<Reaction> findReactionByPostId(int postId);
 }
