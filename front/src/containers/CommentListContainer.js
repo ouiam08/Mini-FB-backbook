@@ -7,18 +7,18 @@ import useUpdateComment from '../hooks/comments/useUpdateComment';
 import useGetUserByID from "../hooks/users/useGetUserByID";
 
 function CommentListContainer(props) {
-    const {commentList} = useGetPostComments(props.postId);
+    const {commentList} = useGetPostComments(props.post.id);
     const {updateCommentMutation} = useUpdateComment();
     const {deleteCommentMutation} = useDeleteComment();
     const [deleteCalled, setDeleteCalled] = useState(false);
     const user = useGetUserByID(Cookies.get('userID')).data;
     const [paramsListDisplay , setParamsListDisplay] = useState(false);
-    // const [defaultCommentText, setDefaultCommentText] = useState('')
-    const [editedCommentText, setEditedCommentText] = useState('');
+    const [editedCommentText, setEditedCommentText] = useState('hi');
     const [editModeCommentId, setEditModeCommentId] = useState(null);
 
     const handleEditComment = (commentId) => {
         setEditModeCommentId(commentId);
+        setParamsListDisplay(!paramsListDisplay);
     };
     const handleTextChange = (e)=>{
         setEditedCommentText(e.target.value);
@@ -26,10 +26,10 @@ function CommentListContainer(props) {
     const handleSaveComment = async () => {
         try {
             const updatedComment = {
-                comment_id: editModeCommentId,
-                post_id: props.postId,
-                user_id: user.id,
-                comment_body: editedCommentText
+                id: editModeCommentId,
+                post: props.post,
+                user: user,
+                body: editedCommentText
             }
             console.log(updatedComment);
             await updateCommentMutation.mutateAsync(updatedComment);
@@ -47,7 +47,6 @@ function CommentListContainer(props) {
             try {
                 await deleteCommentMutation.mutateAsync(commentId);
                 setDeleteCalled(true);
-                alert("Comment deleted successfully")
             } catch (error) {
                 console.error('Error deleting comment:', error);
             }

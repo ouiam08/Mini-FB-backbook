@@ -7,7 +7,7 @@ import Button from './Common/Button';
 function NewPost(props) {
     return (
         <>
-            <div className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-20 shadow-md'>
+            <div className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-40 shadow-md'>
                 <div className='inline-flex w-full'>
                     <img src={Mark} alt='mark' className='w-16 h-16 rounded-full p-2 cursor-pointer'/>
                     <div className={`rounded-lg m-4 w-full p-4 ${props.bgColor}`}>

@@ -9,7 +9,8 @@ function PostListContainer() {
     const {postList} = useGetPosts();
     const {deletePostMutation} = useDeletePost();
     const user = useGetUserByID(Cookies.get('userID')).data;
-    const [isPostSelected, setIsPostSelected] = useState(null)
+    const [isPostSelected, setIsPostSelected] = useState(null);
+    const [showComments, setShowComments] = useState(false);
 
 
     const handleDeletePost = async (postId) => {
@@ -34,6 +35,8 @@ function PostListContainer() {
                 handleDeletePost={handleDeletePost}
                 handleDeleteClick={handleDeleteClick}
                 user={user}
+                showComments={showComments}
+                setShowComments={setShowComments}
                 setPostSelected={setIsPostSelected}
                 postSelected={isPostSelected}
 

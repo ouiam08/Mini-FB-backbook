@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Person from './../Assets/images/person.jpg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBook, faClose, faComment, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
@@ -10,11 +10,13 @@ function PostList({
                       postList,
                       handleDeleteClick,
                       user,
+                      showComments,
+                      setShowComments,
                       postSelected,
                       setPostSelected
 
                   }) {
-
+const [selectedPost, setSelectedPost] = useState(null)
 
     return (
         <>
@@ -22,7 +24,7 @@ function PostList({
 
             <div>
                 {postList.map((post) => (
-                    <div key={post.id} className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-20 shadow-md'>
+                    <div key={post.id} className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-40 shadow-md'>
                         <div className='inline-flex ml-6 w-full'>
                             <img src={Person} alt='postownerimage'
                                  className='w-16 h-16 rounded-full p-2 cursor-pointer m-2'/>
@@ -61,7 +63,7 @@ function PostList({
                                 <div className='cursor-pointer'><FontAwesomeIcon icon={faThumbsUp}
                                                                                  className='text-gray-500 text-xl mr-2'/>React
                                 </div>
-                                <div className='cursor-pointer'>
+                                <div className='cursor-pointer' onClick={()=> setSelectedPost(prevSelectedPost => prevSelectedPost === post ? null : post)}>
                                     <FontAwesomeIcon icon={faComment} className='text-gray-500 text-xl mr-2'/>
                                     Comment
                                 </div>
@@ -70,7 +72,7 @@ function PostList({
                                 </div>
                             </div>
                             <hr/>
-                            {<CommentListContainer postId={post.id}/>}
+                            {selectedPost === post && <CommentListContainer post={post}/>}
                         </div>
                         <NewCommentContainer post={post}/>
 
