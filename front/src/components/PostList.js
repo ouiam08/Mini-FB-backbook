@@ -49,7 +49,7 @@ const [selectedPost, setSelectedPost] = useState(null)
                         </div>
                         <div className='ml-2 mr-2'>{post.body}</div>
                         <div className='ml-4 mt-2 cursor-pointer'>
-                            <span>33</span>
+                            <span> </span>
                             <FontAwesomeIcon icon={faThumbsUp} className='text-green-800 ml-2 mr-3'/>
                             <span>{post.nbreComment}</span>
                             <FontAwesomeIcon icon={faComment} className='text-green-800 ml-2'/>

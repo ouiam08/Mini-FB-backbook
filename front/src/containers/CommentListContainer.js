@@ -31,7 +31,6 @@ function CommentListContainer(props) {
                 user: user,
                 body: selectedComment
             }
-            console.log(updatedComment);
             await updateCommentMutation.mutateAsync(updatedComment);
           setEditModeCommentId(null);
         } catch (error) {
