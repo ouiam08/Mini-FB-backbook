@@ -10,8 +10,6 @@ function PostList({
                       postList,
                       handleDeleteClick,
                       user,
-                      showComments,
-                      setShowComments,
                       postSelected,
                       setPostSelected
 

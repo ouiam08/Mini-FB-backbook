@@ -2,7 +2,6 @@ import React from 'react'
 
 function CommetEdit(props
 ) {
-    console.log(props.selectedComment);
   return (
     <div>
         <textarea
