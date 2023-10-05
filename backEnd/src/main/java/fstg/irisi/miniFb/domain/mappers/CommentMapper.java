@@ -14,6 +14,7 @@ import java.util.List;
 public class CommentMapper {
     private PostMapper postMapper;
     private UserMapper userMapper;
+
     public CommentRepresentation convertToCommentRepresentation(Comment comment) {
         return CommentRepresentation.builder()
                 .id(comment.getCommentId())
@@ -39,11 +40,6 @@ public class CommentMapper {
 
         return representations;
     }
-
-
-
-
-
 
 
 }

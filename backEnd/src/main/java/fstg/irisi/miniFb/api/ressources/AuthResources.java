@@ -34,7 +34,7 @@ public class AuthResources {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/signin")
-    public ResponseEntity<String> authenticateUser(@RequestBody UserCommand loginDto){
+    public ResponseEntity<String> authenticateUser(@RequestBody UserCommand loginDto) {
 
         Optional<FBUser> userOptional = userRepository.findByUserName(loginDto.getName());
 
@@ -56,10 +56,10 @@ public class AuthResources {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestBody UserCommand signUpDto){
+    public ResponseEntity<?> registerUser(@RequestBody UserCommand signUpDto) {
 
         // add check for username exists in a DB
-        if(userRepository.existsByUserName(signUpDto.getName())){
+        if (userRepository.existsByUserName(signUpDto.getName())) {
             return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
         }
 

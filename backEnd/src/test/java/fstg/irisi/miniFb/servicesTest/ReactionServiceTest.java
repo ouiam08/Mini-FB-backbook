@@ -41,7 +41,7 @@ public class ReactionServiceTest {
 
 
     @Test
-    public void shouldGetAllReactions(){
+    public void shouldGetAllReactions() {
         Reaction reaction1 = new Reaction();
         reaction1.setReactionId(1);
         reaction1.setReactionType("Like");
@@ -72,8 +72,8 @@ public class ReactionServiceTest {
         verify(reactionRepository).findAll();
         verify(reactionMapper).convertToReactionRepresentationList(reactionList);
 
-        assertEquals(2,reactionRepresentationsResult.size());
-        assertEquals(reactionRepresentationList,reactionRepresentationsResult);
+        assertEquals(2, reactionRepresentationsResult.size());
+        assertEquals(reactionRepresentationList, reactionRepresentationsResult);
 
     }
 
@@ -174,10 +174,11 @@ public class ReactionServiceTest {
         verify(reactionRepository).save(existingReaction);
         verify(reactionMapper).convertToReactionRepresentation(updatedReaction);
 
-        assertEquals(updatedRepresentation,result);
+        assertEquals(updatedRepresentation, result);
     }
+
     @Test
-    public void shouldDeleteReaction(){
+    public void shouldDeleteReaction() {
         int reactionId = 1;
         String result = reactionService.delete(reactionId);
         verify(reactionRepository).deleteById(reactionId);

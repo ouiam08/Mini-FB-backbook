@@ -1,7 +1,15 @@
 import Mark from './../Assets/images/mark.jpg';
 import Button from '../../../front/src/components/Common/Button';
 
-function NewComment(props) {
+function NewComment({
+    handleAddComment,
+    newCommentData,
+    handleInputChange,
+    handleChange,
+    handleCommentSubmit,
+    comment,
+    postId,
+}) {
 
 
     return (
@@ -12,12 +20,12 @@ function NewComment(props) {
                 <textarea
                     className="w-full h-2 pb-6 bg-transparent outline-none border-none overflow-hidden resize-none"
                     placeholder="Write a comment"
-                    value={props.comment}
-                    onChange={props.handleChange}
+                    value={comment}
+                    onChange={handleChange}
                 >
                 </textarea>
                 </div>
-                <Button text="Comment" icon={false} className='' click={() => props.handleCommentSubmit(props.postId)}/>
+                <Button text="Comment" icon={false} className='' click={() => handleCommentSubmit(postId)}/>
             </div>
         </>
     )

@@ -13,15 +13,15 @@ function Home() {
         window.location.href = '/signin'
     }
     const userId = Cookies.get('userID');
-    const { data} = useGetUserByID(userId);
+    const {data} = useGetUserByID(userId);
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-200">
-            <Header handleDeconnexion={handleDeconnexion} name={data ? data.name : 'Loading...'} />
-            <NewPostContainer />
-            <PostListContainer />
+            <Header handleDeconnexion={handleDeconnexion} name={data ? data.name : 'Loading...'}/>
+            <NewPostContainer/>
+            <PostListContainer/>
             <div className="flex-grow"></div>
-            <Footer />
+            <Footer/>
         </div>
     )
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class ReactionResources {
-     private final ReactionService reactionService;
+    private final ReactionService reactionService;
 
     @GetMapping
     public ResponseEntity<List<ReactionRepresentation>> getAllReactions() {
@@ -31,18 +31,18 @@ public class ReactionResources {
     @PostMapping
     public ResponseEntity<Integer> createReaction(
             @RequestBody ReactionCommand reactionCommand) {
-        return  ResponseEntity.ok(reactionService.create(reactionCommand));
+        return ResponseEntity.ok(reactionService.create(reactionCommand));
     }
 
     @PutMapping
     public ResponseEntity<ReactionRepresentation> updateReactionType(
-        @RequestBody ReactionCommand reactionCommand) {
-    return ResponseEntity.ok(reactionService.update(reactionCommand));
-}
+            @RequestBody ReactionCommand reactionCommand) {
+        return ResponseEntity.ok(reactionService.update(reactionCommand));
+    }
 
     @DeleteMapping("/{reactionId}")
     public ResponseEntity<String> deleteReaction(@PathVariable int reactionId) {
-        return ResponseEntity.ok( reactionService.delete(reactionId));
+        return ResponseEntity.ok(reactionService.delete(reactionId));
     }
 
 }

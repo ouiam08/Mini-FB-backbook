@@ -41,7 +41,7 @@ public class CommentServiceTest {
     private CommentService commentService;
 
     @Test
-    public void shouldGetAllComments(){
+    public void shouldGetAllComments() {
         List<Comment> comments = new ArrayList<>();
         Comment comment1 = new Comment();
         comment1.setCommentId(1);
@@ -67,21 +67,22 @@ public class CommentServiceTest {
         when(commentRepository.findAll()).thenReturn(comments);
         when(commentMapper.convertToCommentRepresentationList(comments)).thenReturn(commentRepresentationList);
 
-        List<CommentRepresentation> commentRepresentationsResult= commentService.getAll();
+        List<CommentRepresentation> commentRepresentationsResult = commentService.getAll();
         verify(commentRepository).findAll();
         verify(commentMapper).convertToCommentRepresentationList(comments);
 
         assertEquals(2, commentRepresentationsResult.size());
-        assertEquals(commentRepresentationList,commentRepresentationsResult);
+        assertEquals(commentRepresentationList, commentRepresentationsResult);
     }
 
     @Test
-    public void shouldDeleteComment(){
+    public void shouldDeleteComment() {
         int commentId = 123;
         String result = commentService.delete(commentId);
         verify(commentRepository).deleteById(commentId);
         assertEquals("Comment deleted!", result);
     }
+
     @Test
     public void shouldGetCommentsByPostId() {
         int postId = 1;
