@@ -1,15 +1,25 @@
-import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBook, faClose, faComment, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
+import {faBook, faClose, faComment, faHeart, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import NewCommentContainer from '../containers/NewCommentContainer';
 import CommentListContainer from '../containers/CommentListContainer';
 import PostEditContainer from "../containers/PostEditContainer";
+import ReactionContainer from '../containers/ReactionContainer';
+import ReactLikeContainer from '../containers/ReactLikeContainer';
+import ReactLoveContainer from '../containers/ReactLoveContainer';
 
 function PostList({
                       postList,
                       handleDeleteClick,
+                      handleReactList,
+                      reactListShow,
                       user,
                       postSelected,
+                      reactionColor,
+                      setReactionColor,
+                      reactionIcon,
+                      setReactionIcon,
+                      reactionText,
+                      setReactionText,
                       setPostSelected,
                       setSelectedPost,
                       selectedPost,
@@ -18,8 +28,6 @@ function PostList({
 
     return (
         <>
-
-
             <div>
                 {postList.map((post) => (
                     <div key={post.id} className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-40 shadow-md'>
@@ -42,26 +50,36 @@ function PostList({
                                                      onClick={() => handleDeleteClick(post.id)}/>
 
                                     {postSelected !== null && <PostEditContainer setPostSelected={setPostSelected}
-                                                                                 postSelected={postSelected}/>}
+                                                                        postSelected={postSelected}/>}
                                 </div>
-
                             }
-
                         </div>
                         <div className='ml-2 mr-2'>{post.body}</div>
                         <div className='ml-4 mt-2 cursor-pointer'>
-                            <span> </span>
-                            <FontAwesomeIcon icon={faThumbsUp} className='text-green-800 ml-2 mr-3'/>
+                            
+                            <ReactionContainer postId={post.id}/>
+                            <FontAwesomeIcon icon={faThumbsUp} className='text-blue-500 rounded-full  ml-2 mb-0'/>
+                            <FontAwesomeIcon icon={faHeart} className='text-red-600 rounded-full  mr-4'/>
                             <span>{post.nbreComment}</span>
                             <FontAwesomeIcon icon={faComment} className='text-green-800 ml-2'/>
                         </div>
 
                         <div className='mt-2'>
                             <hr/>
+                            {reactListShow && <span className='bg-gray-100 p-2 rounded-lg relative left-20 bottom-2'>
+                                    <ReactLikeContainer postt={post} userr={user} setReactionColor={setReactionColor} setReactionIcon={setReactionIcon} setReactionText={setReactionText}/>
+                                    <ReactLoveContainer postt={post} userr={user} setReactionColor={setReactionColor} setReactionIcon={setReactionIcon} setReactionText={setReactionText}/>
+                                    </span>
+                                   
+                            }
                             <div className='flex justify-between m-2 ml-20 mr-20'>
-                                <div className='cursor-pointer'><FontAwesomeIcon icon={faThumbsUp}
-                                                                                 className='text-gray-500 text-xl mr-2'/>React
+                                <div className={`${reactionColor} cursor-pointer`} onClick={()=>handleReactList()}>
+                                    <FontAwesomeIcon icon={reactionIcon}
+                                                    className={`${reactionColor} text-xl mr-2 `}
+                                    />
+                                    {reactionText}
                                 </div>
+
                                 <div className='cursor-pointer'
                                      onClick={() => setSelectedPost(prevSelectedPost => prevSelectedPost === post ? null : post)}>
                                     <FontAwesomeIcon icon={faComment} className='text-gray-500 text-xl mr-2'/>
