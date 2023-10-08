@@ -3,16 +3,16 @@ import {useQuery} from "react-query";
 import {ENDPOINTS} from "../../endpoints";
 import {instance} from "../axios/useAxios";
 
-const fetchPostsByUserIdQueryFn = async ( id) => {
+const fetchPostsByUserIdQueryFn = async (id) => {
     try {
-        const response = await instance.get(`${ENDPOINTS.POSTS}/users/`+id);
+        const response = await instance.get(`${ENDPOINTS.POSTS}/users/` + id);
         return response.data;
     } catch (error) {
         throw error;
     }
 };
 
-export const useGetPostsByUserId = ( id) => {
+export const useGetPostsByUserId = (id) => {
     const {status, data, error, refetch} = useQuery({
         queryKey: ["fetchAllPostsByUserID"],
         queryFn: () => fetchPostsByUserIdQueryFn(id),

@@ -21,6 +21,7 @@ export const useInsertPost = () => {
         async (post) => {
             const insertPost = await insertPostFn(post);
             queryClient.invalidateQueries(["fetchAllPosts"]);
+            queryClient.invalidateQueries(["fetchAllPostsByUserID"]);
             return insertPost;
         }
     );

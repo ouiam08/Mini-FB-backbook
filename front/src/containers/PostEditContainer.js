@@ -6,7 +6,8 @@ import useUpdatePost from "../hooks/posts/useUpdatePost";
 
 const PostEditContainer = (props) => {
     const [updatedText, setUpdatedText] = useState(props.postSelected.body);
-    const user = useGetUserByID(Cookies.get('userID')).data;
+    const userId = Cookies.get('userID');
+    const {user} = useGetUserByID(userId);
     const {updatePostMutation} = useUpdatePost();
     const handleUpdatePost = async () => {
         try {

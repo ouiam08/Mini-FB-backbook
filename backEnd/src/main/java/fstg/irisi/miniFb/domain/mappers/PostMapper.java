@@ -68,23 +68,24 @@ public class PostMapper {
         String timeAgo;
 
         if (duration.toMinutes() < 1) {
-            timeAgo = "Il y a moins d'une minute";
+            timeAgo = "Less than a minute ago";
         } else if (duration.toHours() < 1) {
             long minutes = duration.toMinutes();
-            timeAgo = "Il y a " + minutes + " minute" + (minutes > 1 ? "s" : "");
+            timeAgo = minutes + " minute" + (minutes > 1 ? "s ago" : " ago");
         } else if (duration.toDays() < 1) {
             long hours = duration.toHours();
-            timeAgo = "Il y a " + hours + " heure" + (hours > 1 ? "s" : "");
+            timeAgo = hours + " hour" + (hours > 1 ? "s ago" : " ago");
         } else if (period.getMonths() < 1) {
             long days = duration.toDays();
-            timeAgo = "Il y a " + days + " jour" + (days > 1 ? "s" : "");
+            timeAgo = days + " day" + (days > 1 ? "s ago" : " ago");
         } else if (period.getYears() < 1) {
             long months = period.getMonths();
-            timeAgo = "Il y a " + months + " mois";
+            timeAgo = months + " month" + (months > 1 ? "s ago" : " ago");
         } else {
             long years = period.getYears();
-            timeAgo = "Il y a " + years + " an" + (years > 1 ? "s" : "");
+            timeAgo = years + " year" + (years > 1 ? "s ago" : " ago");
         }
+
 
         return timeAgo;
     }

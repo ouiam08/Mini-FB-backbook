@@ -12,7 +12,8 @@ function CommentListContainer(props) {
     const {deleteCommentMutation} = useDeleteComment();
     const [deleteCalled, setDeleteCalled] = useState(false);
     const [selectedComment, setSelectedComment] = useState('');
-    const user = useGetUserByID(Cookies.get('userID')).data;
+    const userId = Cookies.get('userID');
+    const {user} = useGetUserByID(userId);
     const [paramsListDisplay, setParamsListDisplay] = useState(false);
     const [editModeCommentId, setEditModeCommentId] = useState(null);
 

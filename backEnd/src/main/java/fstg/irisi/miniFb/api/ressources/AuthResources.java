@@ -57,18 +57,14 @@ public class AuthResources {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody UserCommand signUpDto) {
-
-        // add check for username exists in a DB
         if (userRepository.existsByUserName(signUpDto.getName())) {
             return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
         }
 
-
-        // create user object
         FBUser user = new FBUser();
         user.setUserName(signUpDto.getName());
         user.setUserPassword(passwordEncoder.encode(signUpDto.getPassword()));
-
+        user.setUserPhoto(signUpDto.getPhoto());
 
         userRepository.save(user);
 

@@ -6,13 +6,12 @@ import useGetUserByID from "../hooks/users/useGetUserByID";
 import Cookies from "js-cookie";
 
 const PostsUserContainer = () => {
-    const userId =Cookies.get('userID');
+    const userId = Cookies.get('userID');
+    const {user} = useGetUserByID(userId);
     const {postList} = useGetPostsByUserId(userId);
     const {deletePostMutation} = useDeletePost();
-    const user = useGetUserByID(userId).data;
     const [isPostSelected, setIsPostSelected] = useState(null);
     const [selectedPost, setSelectedPost] = useState(null)
-    console.log(postList)
     const handleDeletePost = async (postId) => {
         try {
             await deletePostMutation.mutateAsync(postId);

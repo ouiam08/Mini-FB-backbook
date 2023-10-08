@@ -27,6 +27,12 @@ public class PostResources {
         return ResponseEntity.ok(postService.getAll());
     }
 
+    //method to get all posts
+    @GetMapping("/users/{id}")
+    public ResponseEntity<List<PostRepresentation>> getPostsByUserId(@PathVariable int id) {
+        return ResponseEntity.ok(postService.getPostByUserId(id));
+    }
+
     //method to save new post
     @PostMapping
     public ResponseEntity<Integer> insertPost(@RequestBody PostCommand postCommand) {
