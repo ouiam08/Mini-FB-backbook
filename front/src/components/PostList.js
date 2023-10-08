@@ -1,7 +1,3 @@
-
-import React from 'react';
-
-import Person from './../Assets/images/person.jpg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBook, faClose, faComment, faHeart, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
 import NewCommentContainer from '../containers/NewCommentContainer';
@@ -30,14 +26,13 @@ function PostList({
 
                   }) {
 
-
     return (
         <>
             <div>
                 {postList.map((post) => (
                     <div key={post.id} className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-40 shadow-md'>
                         <div className='inline-flex ml-6 w-full'>
-                            <img src={Person} alt='postownerimage'
+                            <img src={`data:image/png;base64,${post.user.photo}`} alt='postownerimage'
                                  className='w-16 h-16 rounded-full p-2 cursor-pointer m-2'/>
                             <div className='mt-4'>
                                 <div className='text-green-800 font-beezee font-semibold'>{post.user.name}</div>

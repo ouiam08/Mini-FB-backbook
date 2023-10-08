@@ -14,4 +14,5 @@ public class UserCommand {
     private String name;
     private String password;
     private String description;
+    private byte[] photo;
 }

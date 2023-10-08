@@ -21,6 +21,7 @@ export const useDeletePost = () => {
         async (postId) => {
             const deletedPost = await deletePostFn(postId);
             queryClient.invalidateQueries(["fetchAllPosts"]);
+            queryClient.invalidateQueries(["fetchAllPostsByUserID"]);
             return deletedPost;
         }
     );

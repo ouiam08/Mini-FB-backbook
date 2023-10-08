@@ -13,11 +13,14 @@ function Home() {
         window.location.href = '/signin'
     }
     const userId = Cookies.get('userID');
-    const {data} = useGetUserByID(userId);
-
+    const {user} = useGetUserByID(userId);
+    const profileHref = '/profile/' + userId;
+    const isProfile = false;
     return (
         <div className="flex flex-col min-h-screen bg-gray-200">
-            <Header handleDeconnexion={handleDeconnexion} name={data ? data.name : 'Loading...'}/>
+            <Header handleDeconnexion={handleDeconnexion} name={user ? user.name : 'Loading...'}
+                    photo={`data:image/png;base64,${user.photo}`}
+                    hrefProfile={profileHref} isProfile={isProfile}/>
             <NewPostContainer/>
             <PostListContainer/>
             <div className="flex-grow"></div>

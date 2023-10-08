@@ -26,7 +26,8 @@ public class UserService {
         user.setUserName(userCommand.getName());
         user.setUserPassword(userCommand.getPassword());
         user.setUserDescription(userCommand.getDescription());
-
+        user.setUserPhoto(userCommand.getPhoto());
+        userRepository.save(user);
         return userMapper.convertToUserRepresentation(user);
     }
 

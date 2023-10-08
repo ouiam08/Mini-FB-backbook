@@ -8,7 +8,8 @@ import Mark from "../Assets/images/mark.jpg";
 function NewPostContainer() {
     const {insertPostMutation} = useInsertPost();
     const [newPostData, setNewPostData] = useState({photo: null, body: '', user: ''});
-    const user = useGetUserByID(Cookies.get('userID')).data;
+    const userId = Cookies.get('userID');
+    const {user} = useGetUserByID(userId);
     const [text, setText] = useState('');
     const [bgColor, setBgColor] = useState('bg-gray-200');
     const [bgColorIndex, setBgColorIndex] = useState(0);
@@ -77,6 +78,7 @@ function NewPostContainer() {
                 selectedImage={selectedImage}
                 text={text}
                 bgColor={bgColor}
+                photo={`data:image/png;base64,${user.photo}`}
             />
         </div>
     );

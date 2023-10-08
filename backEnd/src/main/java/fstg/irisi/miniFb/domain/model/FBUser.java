@@ -20,6 +20,10 @@ public class FBUser {
     private String userName;
     private String userPassword;
     private String userDescription;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] userPhoto;
+
     @OneToMany(mappedBy = "commentOwner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 

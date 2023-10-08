@@ -1,5 +1,4 @@
 import React from 'react';
-import Mark from './../Assets/images/mark.jpg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faImage, faPalette, faSmile} from '@fortawesome/free-solid-svg-icons';
 import Button from './Common/Button';
@@ -9,7 +8,7 @@ function NewPost(props) {
         <>
             <div className='bg-white w-auto rounded-lg p-6 mt-6 mb-6 m-40 shadow-md'>
                 <div className='inline-flex w-full'>
-                    <img src={Mark} alt='mark' className='w-16 h-16 rounded-full p-2 cursor-pointer'/>
+                    <img src={props.photo} alt='mark' className='w-16 h-16 rounded-full p-2 cursor-pointer'/>
                     <div className={`rounded-lg m-4 w-full p-4 ${props.bgColor}`}>
             <textarea
                 className="w-full h-20 p-2 bg-transparent outline-none border-none overflow-hidden resize-none"
