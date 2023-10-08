@@ -4,7 +4,9 @@ import fstg.irisi.miniFb.domain.command.PostCommand;
 import fstg.irisi.miniFb.domain.command.UserCommand;
 import fstg.irisi.miniFb.domain.mappers.PostMapper;
 import fstg.irisi.miniFb.domain.mappers.UserMapper;
+import fstg.irisi.miniFb.domain.model.FBUser;
 import fstg.irisi.miniFb.domain.model.Post;
+import fstg.irisi.miniFb.domain.repositories.FbUserRepository;
 import fstg.irisi.miniFb.domain.repositories.PostRepository;
 import fstg.irisi.miniFb.domain.representations.PostRepresentation;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +22,17 @@ public class PostService {
     private final PostRepository postRepository;
     private final PostMapper postMapper;
     private final UserMapper userMapper;
+    private final FbUserRepository userRepository;
 
     public List<PostRepresentation> getAll() {
         return postMapper.convertToPostRepresentationList(postRepository.findAll(Sort.by(Sort.Order.desc("postTime"))));
+    }
+
+    public List<PostRepresentation> getPostByUserId(int id) {
+        FBUser user =  userRepository.findById(id).orElseThrow(()->new IllegalArgumentException("user.not.found"+id));
+        Sort sort = Sort.by(Sort.Order.desc("postTime"));
+        return postMapper.convertToPostRepresentationList(postRepository.findAllByPostOwner(user,sort));
+
     }
 
 
@@ -56,4 +66,6 @@ public class PostService {
         }
         return "post deleted!";
     }
+
+
 }

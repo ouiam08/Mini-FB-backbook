@@ -1,5 +1,4 @@
 import React from 'react'
-import Person from '../Assets/images/person.jpg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEllipsis} from '@fortawesome/free-solid-svg-icons'
 import CommentEdit from './CommentEdit';
@@ -12,7 +11,8 @@ function CommentList(
             <div className='overflow-auto w-full max-h-44 '>
                 {props.commentList.map((comment) => (
                     <div key={comment.id} className='inline-flex w-full'>
-                        <img src={Person} alt='' className='w-6 h-6 rounded-full m-4'/>
+                        <img src={`data:image/png;base64,${comment.user.photo}`} alt=''
+                             className='w-6 h-6 rounded-full m-4'/>
                         <div className='bg-gray-50 rounded-lg w-full m-2 flex'>
                             <div className='w-80'>
                                 <h3 className='m-2 font-bold'>{comment.user.name}</h3>

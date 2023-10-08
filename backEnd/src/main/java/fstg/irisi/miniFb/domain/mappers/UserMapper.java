@@ -15,6 +15,7 @@ public class UserMapper {
                 .description(user.getUserDescription())
                 .name(user.getUserName())
                 .password(user.getUserPassword())
+                .photo(user.getUserPhoto())
                 .build();
     }
 
@@ -24,6 +25,7 @@ public class UserMapper {
                 .userDescription(user.getDescription())
                 .userPassword(user.getPassword())
                 .userName(user.getName())
+                .userPhoto(user.getPhoto())
                 .build();
     }
 

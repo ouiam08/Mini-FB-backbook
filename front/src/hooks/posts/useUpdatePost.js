@@ -21,6 +21,7 @@ export const useUpdatePost = () => {
         async (post) => {
             const updatePost = await updatePostFn(post);
             queryClient.invalidateQueries(["fetchAllPosts"]);
+            queryClient.invalidateQueries(["fetchAllPostsByUserID"]);
             return updatePost;
         }
     );

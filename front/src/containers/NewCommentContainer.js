@@ -7,8 +7,8 @@ import Cookies from "js-cookie";
 function NewCommentContainer(params) {
     const {insertCommentMutation} = useInsertComment();
     const [newCommentData, setNewCommentData] = useState({body: '', user: {}, post: {}});
-    const user = useGetUserByID(Cookies.get('userID')).data;
-
+    const userId = Cookies.get('userID');
+    const {user} = useGetUserByID(userId);
 
     const handleAddComment = async (comment) => {
         try {
@@ -58,6 +58,7 @@ function NewCommentContainer(params) {
                 handleCommentSubmit={handleCommentSubmit}
                 comment={comment}
                 postId={params.postId}
+                photo={`data:image/png;base64,${user.photo}`}
             />
         </div>
     );
