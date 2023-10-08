@@ -14,9 +14,10 @@ function PostListContainer() {
     const {deletePostMutation} = useDeletePost();
     const user = useGetUserByID(Cookies.get('userID')).data;
     const [isPostSelected, setIsPostSelected] = useState(null);
+
     const [selectedPost, setSelectedPost] = useState(null);
     const [reactListShow, setReactListShow] = useState(false);
-    
+  
     const handleDeletePost = async (postId) => {
         try {
             await deletePostMutation.mutateAsync(postId);

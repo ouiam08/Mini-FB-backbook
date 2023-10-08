@@ -1,4 +1,6 @@
+
 import React from 'react';
+
 import Person from './../Assets/images/person.jpg'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBook, faClose, faComment, faHeart, faShare, faThumbsUp} from '@fortawesome/free-solid-svg-icons';
@@ -82,7 +84,7 @@ function PostList({
                                     />
                                     {reactionText}
                                 </div>
-                                
+
                                 <div className='cursor-pointer'
                                      onClick={() => setSelectedPost(prevSelectedPost => prevSelectedPost === post ? null : post)}>
                                     <FontAwesomeIcon icon={faComment} className='text-gray-500 text-xl mr-2'/>
