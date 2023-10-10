@@ -23,7 +23,7 @@ function UserRegistrationContainer() {
                     const user = {
                         name: userData.name,
                         password: userData.password,
-                        photo: photoBase64,
+                        // photo: photoBase64,
                     };
 
                     await registerUserMutation.mutateAsync(user);
