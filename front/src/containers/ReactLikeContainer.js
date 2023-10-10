@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactLike from '../components/ReactLike'
 import useAddReact from '../hooks/react/useAddReact'
-import { faHeart, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import useGetPostUserReactions from '../hooks/react/useGetPostUserReactions';
 import useDeleteReaction from '../hooks/react/useDeleteReaction';
 import useUpdateReaction from '../hooks/react/useUpdateReaction';
 
 function ReactLikeContainer({
-    postt,
-    userr,
+    post,
+    user,
     setReactionColor,
     setReactionIcon,
     setReactionText
@@ -16,15 +16,14 @@ function ReactLikeContainer({
     const {insertReactionMutation} = useAddReact();
     const {deleteReactionMutation} = useDeleteReaction();
     const {updateReactionMutation} = useUpdateReaction();
-    const {reactionList} = useGetPostUserReactions(postt.id, userr.id);
-console.log(reactionList);
+    const {reactionList} = useGetPostUserReactions(post.id, user.id);
     
     const handleReaction = async (postId, type) => {
         try {
             const defaultReaction = {
                 type: type,
-                post: postt,
-                user: userr
+                post: post,
+                user: user
             };
             if(reactionList.length === 0){
                 await insertReactionMutation.mutateAsync(defaultReaction);  
@@ -95,7 +94,7 @@ console.log(reactionList);
   return (
     <ReactLike
         handleReaction={handleReaction}
-        post={postt}
+        post={post}
     />
   )
 }

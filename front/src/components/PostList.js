@@ -2,50 +2,18 @@ import React from 'react';
 import PostCardContainer from '../containers/PostCardContainer';
 
 function PostList({
-                      postList,
-                      handleDeleteClick,
-                      handleReactList,
-                      reactListShow,
-                      user,
-                      postSelected,
-                      reactionColor,
-                      setReactionColor,
-                      reactionIcon,
-                      setReactionIcon,
-                      reactionText,
-                      setReactionText,
-                      setPostSelected,
-                      setSelectedPost,
-                      selectedPost,
-
-                  }) {
+    postList
+}) {
 
     return (
         <>
             <div>
-                {postList.map((post) => (
-                    <>
-                   
+                {postList.map((post) => ( 
                     <PostCardContainer 
+                        key={post.id} 
                         post={post}
-                        setPostSelected={setPostSelected}
-                        user={user}
-                      postSelected={postSelected}
-                      reactionColor={reactionColor}
-                      setReactionColor={setReactionColor}
-                      reactionIcon={reactionIcon}
-                      setReactionIcon={setReactionIcon}
-                      reactionText={reactionText}
-                      setReactionText={setReactionText}
-                      setSelectedPost={setSelectedPost}
-                      selectedPost={selectedPost}
-                      handleReactList={handleReactList}
-                      reactListShow={reactListShow}
-                      handleDeleteClick={handleDeleteClick}
                     />
-                    </>
                 ))}
-
             </div>
         </>
     );

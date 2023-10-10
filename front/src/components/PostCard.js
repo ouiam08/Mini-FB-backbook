@@ -12,21 +12,19 @@ import ReactLoveContainer from '../containers/ReactLoveContainer';
 function PostCard({
     post,
     handleDeleteClick,
-                      handleReactList,
-                      reactListShow,
-                      user,
-                      postSelected,
-                      reactionColor,
-                      setReactionColor,
-                      reactionIcon,
-                      setReactionIcon,
-                      reactionText,
-                      setReactionText,
-                      setPostSelected,
-                      setSelectedPost,
-                      selectedPost,
-                      showComments,
-                      setShowComments
+    handleReactList,
+    reactListShow,
+    user,
+    selectedPostForEdit,
+    reactionColor,
+    setReactionColor,
+    reactionIcon,
+    setReactionIcon,
+    reactionText,
+    setReactionText,
+    setSelectedPostForEdit,
+    showComments,
+    setShowComments
 }) {
   return (
     <>
@@ -43,14 +41,14 @@ function PostCard({
                                     <FontAwesomeIcon
                                         icon={faBook}
                                         className='ml-8 bg-green-800 text-white rounded-full p-2 cursor-pointer'
-                                        onClick={() => setPostSelected(post)}
+                                        onClick={() => setSelectedPostForEdit(post)}
                                     />
                                     <FontAwesomeIcon icon={faClose}
                                                      className='ml-8 mr-8 bg-green-800 text-white rounded-full p-2 cursor-pointer'
                                                      onClick={() => handleDeleteClick(post.id)}/>
 
-                                    {postSelected !== null && <PostEditContainer setPostSelected={setPostSelected}
-                                                                        postSelected={postSelected}/>}
+                                    {selectedPostForEdit !== null && <PostEditContainer setSelectedPostForEdit={setSelectedPostForEdit}
+                                                                        selectedPostForEdit={selectedPostForEdit}/>}
                                 </div>
                             }
                         </div>
@@ -67,13 +65,13 @@ function PostCard({
                         <div className='mt-2'>
                             <hr/>
                             {reactListShow && <span className='bg-gray-100 p-2 rounded-lg relative left-20 bottom-2'>
-                                    <ReactLikeContainer postt={post} userr={user} setReactionColor={setReactionColor} setReactionIcon={setReactionIcon} setReactionText={setReactionText}/>
-                                    <ReactLoveContainer postt={post} userr={user} setReactionColor={setReactionColor} setReactionIcon={setReactionIcon} setReactionText={setReactionText}/>
+                                    <ReactLikeContainer post={post} user={user} setReactionColor={setReactionColor} setReactionIcon={setReactionIcon} setReactionText={setReactionText}/>
+                                    <ReactLoveContainer post={post} user={user} setReactionColor={setReactionColor} setReactionIcon={setReactionIcon} setReactionText={setReactionText}/>
                                     </span>
 
                             }
                             <div className='flex justify-between m-2 ml-20 mr-20'>
-                            <div className={`${reactionColor[post.id] ? reactionColor[post.id] : "text-gray-500"} cursor-pointer`} onClick={()=>handleReactList()}>
+                            <div className={`${reactionColor[post.id] ? reactionColor[post.id] : "text-gray-500"} cursor-pointer`} onClick={() => handleReactList()}>
                                     <FontAwesomeIcon icon={reactionIcon[post.id] ? reactionIcon[post.id] : faThumbsUp}
                                                     className={`${reactionColor[post.id] ? reactionColor[post.id] : "text-gray-500"} text-xl mr-2 `}
                                     />

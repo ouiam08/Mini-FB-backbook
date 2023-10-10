@@ -6,23 +6,23 @@ import useGetPostUserReactions from '../hooks/react/useGetPostUserReactions';
 import useDeleteReaction from '../hooks/react/useDeleteReaction';
 
 function ReactLoveContainer({
-    postt,
-    userr,
+    post,
+    user,
     setReactionColor,
     setReactionIcon,
     setReactionText
 }) {
     const {insertReactionMutation} = useAddReact();
     const {deleteReactionMutation} = useDeleteReaction();
-    const {reactionList} = useGetPostUserReactions(postt.id, userr.id);
+    const {reactionList} = useGetPostUserReactions(post.id, user.id);
 
     
     const handleReaction = async (postId, type) => {
         try {
             const defaultReaction = {
                 type: type,
-                post: postt,
-                user: userr
+                post: post,
+                user: user
             };
             
             if(reactionList.length === 0){
@@ -67,7 +67,7 @@ function ReactLoveContainer({
   return (
     <ReactLove
         handleReaction={handleReaction}
-        post={postt}
+        post={post}
     />
   )
 }

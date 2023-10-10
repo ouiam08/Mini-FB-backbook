@@ -1,27 +1,29 @@
 import React, {useState} from 'react'
 import PostCard from '../components/PostCard'
 import useDeletePost from '../hooks/posts/useDeletePost';
+import Cookies from "js-cookie";
+import useGetUserByID from "../hooks/users/useGetUserByID";
 
 function PostCardContainer({
-    post,
-    user,
-    reactionColor,
-    setReactionColor,
-    reactionIcon,
-    setReactionIcon,
-    reactionText,
-    setReactionText,
-    setSelectedPost,
-    selectedPost,
+    post
 }) {
     const [showComments, setShowComments] = useState(false);
-    const [postSelected, setPostSelected] = useState(null);
+    const [selectedPostForEdit, setSelectedPostForEdit] = useState(null);
     const [reactListShow, setReactListShow] = useState(false);
     const {deletePostMutation} = useDeletePost();
+    const [reactionColor, setReactionColor] = useState({});
+    const [reactionIcon, setReactionIcon] = useState({})
+    const [reactionText, setReactionText] = useState({});
+    const userId = Cookies.get('userID');
+    const {user} = useGetUserByID(userId);
+
+    
+
+    
 
     const handleDeletePost = async (postId) => {
         try {
-            await deletePostMutation.mutateAsync(postId).then(setSelectedPost());
+            await deletePostMutation.mutateAsync(postId);
         } catch (error) {
             console.error('Error deleting post:', error);
         }
@@ -43,16 +45,14 @@ function PostCardContainer({
     handleReactList={handleReactList}
     reactListShow={reactListShow}
     user={user}
-    postSelected={postSelected}
+    selectedPostForEdit={selectedPostForEdit}
     reactionColor={reactionColor}
     setReactionColor={setReactionColor}
     reactionIcon={reactionIcon}
     setReactionIcon={setReactionIcon}
     reactionText={reactionText}
     setReactionText={setReactionText}
-    setPostSelected={setPostSelected}
-    setSelectedPost={setSelectedPost}
-    selectedPost={selectedPost}
+    setSelectedPostForEdit={setSelectedPostForEdit}
     setShowComments={setShowComments}
     showComments={showComments}
     />
