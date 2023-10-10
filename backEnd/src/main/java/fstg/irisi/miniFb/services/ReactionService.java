@@ -28,6 +28,9 @@ public class ReactionService {
     public List<ReactionRepresentation> getByPostId(int postId) {
         return reactionMapper.convertToReactionRepresentationList(reactionRepository.findReactionByPostId(postId));
     }
+    public List<ReactionRepresentation> getByPostIdUserId(int postId, int userId){
+        return reactionMapper.convertToReactionRepresentationList(reactionRepository.findReactionByPostIdUserId(postId,userId));
+    }
 
     public int create(ReactionCommand reactionCommand) {
         Reaction reaction = new Reaction();

@@ -9,9 +9,9 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 function PostListContainer() {
 
     const {postList} = useGetPosts();
-    const [reactionColor, setReactionColor] = useState("text-gray-500");
-    const [reactionIcon, setReactionIcon] = useState(faThumbsUp)
-    const [reactionText, setReactionText] = useState("React");
+    const [reactionColor, setReactionColor] = useState({});
+    const [reactionIcon, setReactionIcon] = useState({})
+    const [reactionText, setReactionText] = useState({});
     const {deletePostMutation} = useDeletePost();
     const userId = Cookies.get('userID');
     const {user} = useGetUserByID(userId);

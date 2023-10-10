@@ -27,6 +27,10 @@ public class ReactionResources {
     public ResponseEntity<List<ReactionRepresentation>> getReactionsByPostId(@PathVariable int postId) {
         return ResponseEntity.ok(reactionService.getByPostId(postId));
     }
+    @GetMapping("/{postId}/{userId}")
+    public ResponseEntity<List<ReactionRepresentation>> getReactionsByPostIdUserId(@PathVariable int postId, @PathVariable int userId) {
+        return ResponseEntity.ok(reactionService.getByPostIdUserId(postId,userId));
+    }
 
     @PostMapping
     public ResponseEntity<Integer> createReaction(
