@@ -21,7 +21,6 @@ public class FBUser {
     private String userPassword;
     private String userDescription;
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
     private byte[] userPhoto;
 
     @OneToMany(mappedBy = "commentOwner", cascade = CascadeType.ALL, orphanRemoval = true)
