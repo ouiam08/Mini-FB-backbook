@@ -17,7 +17,7 @@ function ReactLikeContainer({
     const {deleteReactionMutation} = useDeleteReaction();
     const {updateReactionMutation} = useUpdateReaction();
     const {reactionList} = useGetPostUserReactions(postt.id, userr.id);
-
+console.log(reactionList);
     
     const handleReaction = async (postId, type) => {
         try {
