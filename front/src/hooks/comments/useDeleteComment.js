@@ -22,6 +22,7 @@ export const useDeleteComment = () => {
             const deletedComment = await deleteCommentFn(commentId);
             queryClient.invalidateQueries(["fetchPostComments"]);
             queryClient.invalidateQueries(["fetchAllPosts"]);
+            queryClient.invalidateQueries(["fetchAllPostsByUserID"]);
             return deletedComment;
         }
     );

@@ -1,9 +1,17 @@
 import React from 'react';
-import cover from '../Assets/images/cover.jpg';
+import cover from '../../Assets/images/cover.jpg';
 import {AiOutlineCamera} from 'react-icons/ai'
-import dots from "../Assets/images/more.png";
+import dots from "../../Assets/images/more.png";
 
-const Profile = ({user, handleOpenUpdatePopUp, toggleDropdown, isDropdownOpen, handleOpenPopUp, handleImageUpload}) => {
+const Profile = ({
+                     updateAccess,
+                     user,
+                     handleOpenUpdatePopUp,
+                     toggleDropdown,
+                     isDropdownOpen,
+                     handleOpenPopUp,
+                     handleImageUpload
+                 }) => {
     return (
         <div className="bg-cover bg-center h-64 relative flex items-center rounded m-2"
              style={{backgroundImage: `url(${cover})`}}>
@@ -12,25 +20,28 @@ const Profile = ({user, handleOpenUpdatePopUp, toggleDropdown, isDropdownOpen, h
                     <div className="relative">
                         <img src={`data:image/png;base64,${user.photo}`} alt="Profile Picture"
                              className="rounded-full w-32 h-32 border-4 border-white"/>
-                        <label htmlFor="image-upload"
-                               className="cursor-pointer absolute bottom-2 right-1.5 bg-white w-8 h-8 border-2 border-green-900 rounded-full flex items-center justify-center">
-                            <input
-                                id="image-upload"
-                                type="file"
-                                accept="image/*"
-                                className="hidden"
-                                onChange={handleImageUpload}
-                            />
-                            <AiOutlineCamera className="text-green-950 text-xl"/>
-                        </label>
+                        {updateAccess &&
+                            <label htmlFor="profile-image"
+                                   className="cursor-pointer absolute bottom-2 right-1.5 bg-white w-8 h-8 border-2 border-green-900 rounded-full flex items-center justify-center">
+                                <input
+                                    id="profile-image"
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={handleImageUpload}
+                                />
+                                <AiOutlineCamera className="text-green-950 text-xl"/>
+                            </label>}
                     </div>
                     <div className="ml-4">
                         <h1 className="text-2xl text-white font-semibold">{user.name}</h1>
                         <p className="text-white text-lg">{user.description}</p>
                     </div>
-                    <div className="absolute top-0 right-0 p-3 cursor-pointer" onClick={toggleDropdown}>
-                        <img src={dots} alt="More Options" className="w-6 h-6"/>
-                    </div>
+                    {updateAccess &&
+                        <div className="absolute top-0 right-0 p-3 cursor-pointer" onMouseEnter={toggleDropdown}>
+                            <img src={dots} alt="More Options" className="w-6 h-6"/>
+                        </div>}
+
                 </div>
                 {isDropdownOpen && (
                     <div

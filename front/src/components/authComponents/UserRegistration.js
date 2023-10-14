@@ -1,5 +1,5 @@
 import React from 'react';
-import Earth from './../Assets/images/earth.jpg';
+import Earth from '../../Assets/images/earth.jpg';
 
 function UserRegistration({
                               handleInputChange,

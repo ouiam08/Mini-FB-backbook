@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {useInsertComment} from '../hooks/comments/useInsertComment';
-import {useGetUserByID} from '../hooks/users/useGetUserByID';
-import NewComment from '../components/NewComment';
+import {useInsertComment} from '../../hooks/comments/useInsertComment';
+import {useGetUserByID} from '../../hooks/users/useGetUserByID';
+import NewComment from '../../components/commentComponents/NewComment';
 import Cookies from "js-cookie";
 
 function NewCommentContainer(params) {

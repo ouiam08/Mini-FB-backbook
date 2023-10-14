@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import PostList from "../components/PostList";
-import useGetPostsByUserId from "../hooks/posts/useGetPostsByUserId";
-import useDeletePost from "../hooks/posts/useDeletePost";
-import useGetUserByID from "../hooks/users/useGetUserByID";
-import Cookies from "js-cookie";
+import PostList from "../../components/postComponents/PostList";
+import useGetPostsByUserId from "../../hooks/posts/useGetPostsByUserId";
+import useDeletePost from "../../hooks/posts/useDeletePost";
+import useGetUserByID from "../../hooks/users/useGetUserByID";
+import {useParams} from "react-router";
 
 const PostsUserContainer = () => {
-    const userId = Cookies.get('userID');
-    const {user} = useGetUserByID(userId);
-    const {postList} = useGetPostsByUserId(userId);
+    const {id} = useParams();
+    const {user} = useGetUserByID(id);
+    const {postList} = useGetPostsByUserId(id);
     const {deletePostMutation} = useDeletePost();
     const [isPostSelected, setIsPostSelected] = useState(null);
     const [selectedPost, setSelectedPost] = useState(null)

@@ -22,6 +22,7 @@ export const useDeleteReaction = () => {
             const deleteReaction = await deleteReactionFn(reactionId);
             queryClient.invalidateQueries(["fetchAllReactions"]);
             queryClient.invalidateQueries(["fetchAllPosts"]);
+            queryClient.invalidateQueries(["fetchAllPostsByUserID"]);
             return deleteReaction;
         }
     );
