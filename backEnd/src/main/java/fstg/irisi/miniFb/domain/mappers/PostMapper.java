@@ -4,6 +4,7 @@ import fstg.irisi.miniFb.domain.command.PostCommand;
 import fstg.irisi.miniFb.domain.model.FBUser;
 import fstg.irisi.miniFb.domain.model.Post;
 import fstg.irisi.miniFb.domain.repositories.CommentRepository;
+import fstg.irisi.miniFb.domain.repositories.ReactionRepository;
 import fstg.irisi.miniFb.domain.representations.PostRepresentation;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import java.util.List;
 public class PostMapper {
     private UserMapper userMapper;
     private CommentRepository commentRepository;
+    private ReactionRepository reactionRepository;
 
     public PostRepresentation convertToPostRepresentation(Post post) {
 
@@ -39,7 +41,7 @@ public class PostMapper {
 
         for (Post post : postList) {
             int nbreComment = commentRepository.findByPostId(post.getPostId()).size();
-
+            int nbreReactions = reactionRepository.findReactionByPostId(post.getPostId()).size();
             representations.add(
                     PostRepresentation.builder()
                             .id(post.getPostId())
@@ -48,6 +50,7 @@ public class PostMapper {
                             .time(timeTraitement(post))
                             .user(userMapper.convertToUserRepresentation(post.getPostOwner()))
                             .nbreComment(nbreComment)
+                            .nbreReaction(nbreReactions)
                             .build()
             );
         }

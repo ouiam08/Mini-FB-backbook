@@ -36,7 +36,7 @@ public class PostResources {
     //method to save new post
     @PostMapping
     public ResponseEntity<Integer> insertPost(@RequestBody PostCommand postCommand) {
-        log.info("ajouter un nouveau post : {}", postCommand);
+//        log.info("ajouter un nouveau post : {}", postCommand);
         return ResponseEntity.ok(postService.create(postCommand));
     }
 
