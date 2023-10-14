@@ -21,6 +21,7 @@ export const useUpdateReaction = () => {
             const updateReaction = await updateReactionFn(reaction);
             queryClient.invalidateQueries(["fetchAllReactions"]);
             queryClient.invalidateQueries(["fetchAllPosts"]);
+            queryClient.invalidateQueries(["fetchAllPostsByUserID"]);
             return updateReaction;
         }
     );

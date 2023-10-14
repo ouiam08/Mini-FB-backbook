@@ -1,7 +1,7 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faImage, faPalette, faSmile} from '@fortawesome/free-solid-svg-icons';
-import Button from './Common/Button';
+import Button from '../Common/Button';
 
 function NewPost(props) {
     return (
@@ -18,7 +18,7 @@ function NewPost(props) {
             ></textarea>
                         {props.selectedImage && (
                             <img
-                                src={props.selectedImage}
+                                src={`data:image/png;base64,${props.selectedImage}`}
                                 alt="Selected"
                                 className="w-64 h-32 p-2"
                             />

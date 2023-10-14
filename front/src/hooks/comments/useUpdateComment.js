@@ -22,6 +22,7 @@ export const useUpdateComment = () => {
             const updateComment = await updateCommentFn(comment);
             queryClient.invalidateQueries(["fetchPostComments"]);
             queryClient.invalidateQueries(["fetchAllPosts"]);
+            queryClient.invalidateQueries(["fetchAllPostsByUserID"]);
             return updateComment;
         }
     );

@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
-import useGetPostComments from '../hooks/comments/useGetPostComments';
-import CommentList from '../components/CommentList';
+import useUpdateComment from "../../hooks/comments/useUpdateComment";
+import useDeleteComment from "../../hooks/comments/useDeleteComment";
 import Cookies from "js-cookie";
-import useDeleteComment from '../hooks/comments/useDeleteComment';
-import useUpdateComment from '../hooks/comments/useUpdateComment';
-import useGetUserByID from "../hooks/users/useGetUserByID";
+import useGetUserByID from "../../hooks/users/useGetUserByID";
+import Comment from "../../components/commentComponents/Comment";
 
-function CommentListContainer(props) {
-    const {commentList} = useGetPostComments(props.post.id);
+const CommentContainer = ({comment}) => {
     const {updateCommentMutation} = useUpdateComment();
     const {deleteCommentMutation} = useDeleteComment();
     const [deleteCalled, setDeleteCalled] = useState(false);
@@ -28,7 +26,7 @@ function CommentListContainer(props) {
         try {
             const updatedComment = {
                 id: editModeCommentId,
-                post: props.post,
+                post: comment.post,
                 user: user,
                 body: selectedComment
             }
@@ -53,23 +51,19 @@ function CommentListContainer(props) {
         }
     };
     return (
-        <div>
-            <CommentList
-                editModeCommentId={editModeCommentId}
-                handleEditComment={handleEditComment}
-                handleSaveComment={handleSaveComment}
-                handleTextChange={handleTextChange}
-                selectedComment={selectedComment}
-                setSelectedComment={setSelectedComment}
-                commentList={commentList}
-                user={user}
-                paramsListDisplay={paramsListDisplay}
-                handleParamsList={handleParamsList}
-                handleDeleteComment={handleDeleteComment}
-            />
-
-        </div>
+        <Comment
+            comment={comment}
+            user={user}
+            paramsListDisplay={paramsListDisplay}
+            handleParamsList={handleParamsList}
+            handleDeleteComment={handleDeleteComment}
+            editModeCommentId={editModeCommentId}
+            handleEditComment={handleEditComment}
+            handleSaveComment={handleSaveComment}
+            handleTextChange={handleTextChange}
+            selectedComment={selectedComment}
+            setSelectedComment={setSelectedComment}/>
     );
-}
+};
 
-export default CommentListContainer;
+export default CommentContainer;

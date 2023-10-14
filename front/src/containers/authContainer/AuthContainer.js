@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {useAuthUser} from "../hooks/Auth/useAuthentificateUser"
-import AuthUser from "../components/AuthUser";
+import {useAuthUser} from "../../hooks/Auth/useAuthentificateUser"
+import AuthUser from "../../components/authComponents/AuthUser";
 import Cookies from 'js-cookie';
 import {useNavigate} from "react-router-dom";
 

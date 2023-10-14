@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import {useRegisterUser} from '../hooks/Auth/useRegisterUser';
-import UserRegistration from '../components/UserRegistration';
-// import profil from '../Assets/images/profil.png'
+import {useRegisterUser} from '../../hooks/Auth/useRegisterUser';
+import UserRegistration from '../../components/authComponents/UserRegistration';
+import profil from '../../Assets/images/profil.png'
 
 function UserRegistrationContainer() {
     const [userData, setUserData] = useState({name: "", password: "", confirmPassword: ""});
@@ -12,18 +12,18 @@ function UserRegistrationContainer() {
         if (userData.name !== '' && userData.password !== '') {
             if (userData.password === userData.confirmPassword) {
                 try {
-                    // const photoUrl = profil;
-                    // const photoResponse = await fetch(photoUrl);
-                    // const photoBlob = await photoResponse.blob();
-                    // const photoArrayBuffer = await new Response(photoBlob).arrayBuffer();
-                    // const photoBase64 = btoa(
-                    //     String.fromCharCode.apply(null, new Uint8Array(photoArrayBuffer))
-                    // );
+                    const photoUrl = profil;
+                    const photoResponse = await fetch(photoUrl);
+                    const photoBlob = await photoResponse.blob();
+                    const photoArrayBuffer = await new Response(photoBlob).arrayBuffer();
+                    const photoBase64 = btoa(
+                        String.fromCharCode.apply(null, new Uint8Array(photoArrayBuffer))
+                    );
 
                     const user = {
                         name: userData.name,
                         password: userData.password,
-                        // photo: photoBase64,
+                        photo: photoBase64,
                     };
 
                     await registerUserMutation.mutateAsync(user);

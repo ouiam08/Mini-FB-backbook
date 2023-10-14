@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
-import Profile from "../components/Profile";
-import useGetUserByID from "../hooks/users/useGetUserByID";
+import React, {useEffect, useState} from 'react';
+import Profile from "../../components/userComponents/Profile";
+import useGetUserByID from "../../hooks/users/useGetUserByID";
 import Cookies from "js-cookie";
-import DeletePopUp from "../components/DeletePopUp";
-import useDeleteUser from "../hooks/users/UseDeleteUser";
-import UpdatePopUp from "../components/UpdatePopUp";
-import useUpdateUser from "../hooks/users/useUpdateUser";
+import DeletePopUp from "../../components/userComponents/DeletePopUp";
+import useDeleteUser from "../../hooks/users/UseDeleteUser";
+import UpdatePopUp from "../../components/userComponents/UpdatePopUp";
+import useUpdateUser from "../../hooks/users/useUpdateUser";
+import {useParams} from "react-router";
 
 const ProfileContainer = () => {
     const userId = Cookies.get('userID');
-    const {user} = useGetUserByID(userId);
+    const {id} = useParams();
+    const {user} = useGetUserByID(id);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false)
     const [isUpdateOpen, setIsUpdateOpen] = useState(false)
@@ -17,6 +19,15 @@ const ProfileContainer = () => {
     const {updateUserMutation} = useUpdateUser();
     const [formData, setFormData] = useState(user);
     const [response, setResponse] = useState('')
+    const [updateAccess, setUpdateAccess] = useState(false)
+
+    useEffect(() => {
+        if (userId === id) {
+            setUpdateAccess(true)
+        } else {
+            setUpdateAccess(false)
+        }
+    }, [id, userId]);
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -90,7 +101,9 @@ const ProfileContainer = () => {
                      isDropdownOpen={isDropdownOpen}
                      handleOpenPopUp={handleOpenPopUp}
                      handleOpenUpdatePopUp={handleOpenUpdatePopUp}
-                     handleImageUpload={handleImageUpload}/>
+                     handleImageUpload={handleImageUpload}
+                     updateAccess={updateAccess}
+            />
             {isOpen &&
                 <DeletePopUp handleDeleteAcount={handleDeleteAccount}
                              handleCancel={handleCancel}/>

@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthContainer from "../containers/AuthContainer";
+import AuthContainer from "../containers/authContainer/AuthContainer";
 import Footer from "../components/Layouts/Footer";
 import Header from "../components/Layouts/Header";
 

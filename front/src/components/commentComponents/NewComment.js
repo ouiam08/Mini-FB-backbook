@@ -1,15 +1,15 @@
-import Button from '../../../front/src/components/Common/Button';
+import Button from '../Common/Button';
 
 function NewComment({
-    handleAddComment,
-    newCommentData,
-    handleInputChange,
-    handleChange,
-    handleCommentSubmit,
-    comment,
-    postId,
-    photo
-}) {
+                        handleAddComment,
+                        newCommentData,
+                        handleInputChange,
+                        handleChange,
+                        handleCommentSubmit,
+                        comment,
+                        postId,
+                        photo
+                    }) {
 
 
     return (

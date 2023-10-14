@@ -1,6 +1,6 @@
 import React from 'react';
-import useGetPosts from '../hooks/posts/useGetPosts';
-import PostList from '../components/PostList';
+import useGetPosts from '../../hooks/posts/useGetPosts';
+import PostList from '../../components/postComponents/PostList';
 
 function PostListContainer() {
 

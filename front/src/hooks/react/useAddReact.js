@@ -10,6 +10,7 @@ const insertReactionFn = async (reaction) => {
         throw error;
     }
 };
+
 function useAddReact() {
 
     const queryClient = useQueryClient();
@@ -19,6 +20,8 @@ function useAddReact() {
         async (reaction) => {
             const addReaction = await insertReactionFn(reaction);
             queryClient.invalidateQueries(["fetchAllReactions"]);
+            queryClient.invalidateQueries(["fetchAllPosts"]);
+            queryClient.invalidateQueries(["fetchAllPostsByUserID"]);
             return addReaction;
         }
     );

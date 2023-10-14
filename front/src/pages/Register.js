@@ -1,5 +1,5 @@
 import React from 'react'
-import UserRegistrationContainer from '../containers/UserRegistrationContainer'
+import UserRegistrationContainer from '../containers/authContainer/UserRegistrationContainer'
 import Header from "../components/Layouts/Header";
 import Footer from "../components/Layouts/Footer";
 

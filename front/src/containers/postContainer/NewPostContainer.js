@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {useInsertPost} from '../hooks/posts/useInsertPost';
-import NewPost from '../components/NewPost';
+import {useInsertPost} from '../../hooks/posts/useInsertPost';
+import NewPost from '../../components/postComponents/NewPost';
 import Cookies from "js-cookie";
-import useGetUserByID from "../hooks/users/useGetUserByID";
-import Mark from "../Assets/images/mark.jpg";
+import useGetUserByID from "../../hooks/users/useGetUserByID";
+import Mark from "../../Assets/images/mark.jpg";
 
 function NewPostContainer() {
     const {insertPostMutation} = useInsertPost();
@@ -18,13 +18,14 @@ function NewPostContainer() {
     const handleAddPost = async (post) => {
         try {
             const defaultPost = {
-                photo: null,
+                photo: selectedImage,
                 body: post.postBody,
                 user: user
             };
             await insertPostMutation.mutateAsync(defaultPost);
 
             setNewPostData({photo: null, body: '', user: ''});
+            setSelectedImage(null)
         } catch (error) {
             console.error('Error inserting post:', error);
         }
@@ -42,7 +43,7 @@ function NewPostContainer() {
     };
 
     const handleShareClick = () => {
-        if (text !== '') {
+        if (text !== '' || selectedImage !== null) {
             const post = {
                 photo: Mark,
                 postBody: text,
@@ -61,7 +62,14 @@ function NewPostContainer() {
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
         if (file) {
-            setSelectedImage(URL.createObjectURL(file));
+            const reader = new FileReader();
+
+            reader.onload = async (e) => {
+                const base64Image = e.target.result.split(",")[1];
+                setSelectedImage(base64Image)
+            };
+
+            reader.readAsDataURL(file);
         }
     };
 
