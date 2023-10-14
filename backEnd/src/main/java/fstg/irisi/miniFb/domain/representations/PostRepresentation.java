@@ -16,4 +16,5 @@ public class PostRepresentation {
     private UserRepresentation user;
     private String time;
     private int nbreComment;
+    private int nbreReaction;
 }

@@ -65,8 +65,7 @@ public class AuthResources {
         FBUser user = new FBUser();
         user.setUserName(signUpDto.getName());
         user.setUserPassword(passwordEncoder.encode(signUpDto.getPassword()));
-//        byte[] photoBytes = Base64.getDecoder().decode(signUpDto.getPhoto());
-//        user.setUserPhoto(photoBytes);
+        user.setUserPhoto(signUpDto.getPhoto());
 
         userRepository.save(user);
 
