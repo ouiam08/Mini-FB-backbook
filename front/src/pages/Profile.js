@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import PostsUserContainer from "../containers/postContainer/PostsUserContainer";
 import {useParams} from "react-router";
 import useGetUserByID from "../hooks/users/useGetUserByID";
+import ChatBotButton from "../components/chatBot/ChatBotButton";
 
 function Profile() {
     const {id} = useParams();
@@ -33,6 +34,7 @@ function Profile() {
             <ProfileContainer/>
             {userId === id && <NewPostContainer/>}
             <PostsUserContainer/>
+            <ChatBotButton />
             <Footer/>
         </div>
     )
