@@ -5,8 +5,6 @@ import NewPostContainer from '../containers/postContainer/NewPostContainer'
 import Footer from '../components/Layouts/Footer'
 import Cookies from "js-cookie";
 import useGetUserByID from "../hooks/users/useGetUserByID";
-import ContentDisplay from "../components/chatBot/EmbeddedPage";
-import EmbeddedPage from "../components/chatBot/EmbeddedPage";
 import ChatBotButton from "../components/chatBot/ChatBotButton";
 
 
