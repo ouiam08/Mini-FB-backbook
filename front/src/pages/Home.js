@@ -5,6 +5,7 @@ import NewPostContainer from '../containers/postContainer/NewPostContainer'
 import Footer from '../components/Layouts/Footer'
 import Cookies from "js-cookie";
 import useGetUserByID from "../hooks/users/useGetUserByID";
+import ChatBotButton from "../components/chatBot/ChatBotButton";
 
 
 function Home() {
@@ -23,6 +24,7 @@ function Home() {
                     hrefProfile={profileHref} isProfile={isProfile}/>
             <NewPostContainer/>
             <PostListContainer/>
+            <ChatBotButton />
             <div className="flex-grow"></div>
             <Footer/>
         </div>

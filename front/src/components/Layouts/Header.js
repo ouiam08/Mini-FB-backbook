@@ -24,7 +24,7 @@ function Header({
                     <div className='ml-6'>
                         <button
                             className='bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg transition duration-300 ease-in-out transform hover:scale-105'
-                            onClick={handleDeconnexion}>Deconnexion
+                            onClick={handleDeconnexion}>Logout
                         </button>
                     </div>
                 </div>}
